@@ -35,7 +35,7 @@ public class ZipCodeService {
 			String json=restTemplate.getForObject(URL, String.class,zipcode);
 			
 			//エンティティクラスを生成
-			ZipCodeEntity zipCodeEntity=new ZipCodeEntity();
+			ZipCodeEntity zipCodeEntity = new ZipCodeEntity();
 			
 			//jsonクラスへの変換失敗のため、例外処理
 			try {
