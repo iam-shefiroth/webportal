@@ -22,7 +22,7 @@ public class ZipCodeController {
 	
 	@PostMapping("/zip")
 	public String getZipCode(@RequestParam("zipcode") String zipcode,Principal principal,Model model) {
-		log.info("area addressnumber : " + zipcode);
+		log.info("「" + principal.getName() + "」input addressnumber : " + zipcode);
 		return "zipcode/zipcode";
 	}
 	
