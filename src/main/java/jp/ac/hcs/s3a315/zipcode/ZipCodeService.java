@@ -70,6 +70,7 @@ public class ZipCodeService {
 			}catch(IOException e) {
 				//例外発生時は、エラーメッセージの詳細を標準エラー出力
 				e.printStackTrace();
+				
 			}
 			return zipCodeEntity;
 		}

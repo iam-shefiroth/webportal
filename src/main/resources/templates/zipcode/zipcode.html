@@ -72,13 +72,13 @@
 			<h3>検索結果</h3>
 			<!-- 基本一件だが、API構造に従い繰り返す構文とする -->
 			<ul th:each="result : ${zipCodeEntity.results}" th:object="${result}">
-				<li><span th:test="*{zipcode}"></span></li>
-				<li><span th:test="*{address1}"></span></li>
-				<li><span th:test="*{address2}"></span></li>
-				<li><span th:test="*{address3}"></span></li>
-				<li><span th:test="*{kana1}"></span></li>
-				<li><span th:test="*{kana2}"></span></li>
-				<li><span th:test="*{kana3}"></span></li>
+				<li><span th:text="*{zipcode}"></span></li>
+				<li><span th:text="*{address1}"></span></li>
+				<li><span th:text="*{address2}"></span></li>
+				<li><span th:text="*{address3}"></span></li>
+				<li><span th:text="*{kana1}"></span></li>
+				<li><span th:text="*{kana2}"></span></li>
+				<li><span th:text="*{kana3}"></span></li>
 			</ul>
 		</div>
 	</div>
