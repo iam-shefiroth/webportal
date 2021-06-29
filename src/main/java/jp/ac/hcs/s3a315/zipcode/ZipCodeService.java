@@ -31,6 +31,7 @@ public class ZipCodeService {
 		 */
 		public ZipCodeEntity getZip(String zipcode) {
 			
+			
 			//APIへアクセスして、結果を取得
 			String json=restTemplate.getForObject(URL, String.class,zipcode);
 			
