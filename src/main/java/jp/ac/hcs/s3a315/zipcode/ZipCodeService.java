@@ -1,5 +1,7 @@
 package jp.ac.hcs.s3a315.zipcode;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,14 +45,42 @@ public class ZipCodeService {
 		
 		//jsonクラスへの変換失敗を考慮し、例外処理
 		try {
-			//変換クラスを生成し、文字列からjsonクラスへへんかんする（例外の可能性はあり）
+			//変換クラスを生成し、文字列からjsonクラスへ変換する（例外の可能性はあり）
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode node = mapper.readTree(json);
 			
 			//Statesパラメータの抽出
+			String states = node.get("states").asText();
+			zipCodeEntity.setStatus(states);
 			
+			//mmessageパラメータの抽出
+			String message = node.get("message").asText();
+			zipCodeEntity.setMessage(message);
 			
+			//resultsパラメータの抽出（配列分取得する）
+			for(JsonNode result : node.get("results")) {
+				//データクラスの生成（result一件分）
+				ZipCodeData zipCodeData = new ZipCodeData();
+				
+				zipCodeData.setZipcode(result.get("zipcode").asText());
+				zipCodeData.setPrefcode(result.get("prefcode").asText());
+				zipCodeData.setAddress1(result.get("address1").asText());
+				zipCodeData.setAddress2(result.get("address2").asText());
+				zipCodeData.setAddress3(result.get("address3").asText());
+				zipCodeData.setKana1(result.get("kana1").asText());
+				zipCodeData.setKana2(result.get("kana2").asText());
+				zipCodeData.setKana3(result.get("kana3").asText());
+				
+				//可変長配列の末尾に追加
+				zipCodeEntity.getResults().add(zipCodeData);
+			}
+		
+		} catch (IOException e) {
+			//例外発生時は、エラーメッセージの詳細を標準エラー出力
+			e.printStackTrace();
 		}
+		return zipCodeEntity;
 	}
+	
 
 }

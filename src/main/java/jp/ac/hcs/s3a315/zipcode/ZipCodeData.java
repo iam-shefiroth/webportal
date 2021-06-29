@@ -1,12 +1,13 @@
 package jp.ac.hcs.s3a315.zipcode;
 
-//import lombok.Data(保存したら勝手に消える)
+import lombok.Data;
 
 /**
  * 
  * 一件分の郵便番号情報
  *
  */
+@Data
 public class ZipCodeData {
 	/** 郵便番号*/
 	private String zipcode;
