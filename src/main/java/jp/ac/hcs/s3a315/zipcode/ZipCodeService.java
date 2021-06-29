@@ -56,7 +56,7 @@ public class ZipCodeService {
 					ZipCodeData zipCodeData=new ZipCodeData();
 					
 					zipCodeData.setZipcode(result.get("zipcode").asText());
-					zipCodeData.setPrefcode(result.get("perfcode").asText());
+					zipCodeData.setPrefcode(result.get("prefcode").asText());
 					zipCodeData.setAddress1(result.get("address1").asText());
 					zipCodeData.setAddress2(result.get("address2").asText());
 					zipCodeData.setAddress3(result.get("address3").asText());
