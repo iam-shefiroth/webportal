@@ -27,7 +27,9 @@ public class WeatherController{
 	@PostMapping("/weather")
 	public String getWeather(@RequestParam("weather") String weather,
 			Principal principal,Model model) {
-		WeatherEntity weatherEntity = weatherService.getweather(weather);
+		//札幌都市コードをここで入れる。（後に変更予定）
+		weather = "016010";
+		WeatherEntity weatherEntity = weatherService.getWeather(weather);
 		model.addAttribute("weatherEntity",weatherEntity);
 		
 		log.info("「" + principal.getName() + "」choise area to wrather : " + weather);

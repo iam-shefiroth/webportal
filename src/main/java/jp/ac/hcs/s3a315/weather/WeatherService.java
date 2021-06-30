@@ -32,7 +32,7 @@ public class WeatherService {
 	 * @param weather 郵便番号(7桁、ハイフン無し)
 	 * @return ZipCodeEntity
 	 */
-	public WeatherEntity getweather(String weather) {
+	public WeatherEntity getWeather(String weather) {
 		
 		
 		//APIへアクセスして、結果を取得
@@ -56,7 +56,7 @@ public class WeatherService {
 			weatherEntity.setDescription(description);
 			
 			//メッセージに何か入力されたらエラー処理を行う。未定
-			if (node.get("results") == null) {
+			if (node.get("forecasts") == null) {
 				WeatherData wetherData=new WeatherData();
 				
 				wetherData.setDateLabel("条件に該当する住所は見つかりませんでした。");
