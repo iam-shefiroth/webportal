@@ -87,14 +87,27 @@
 				<div class="content-box">
 					<h2>札幌の天気予報</h2>
 					<form method="post" th:action="@{/weather}">
-						<!-- <div class="input-group" > -->
-							<!-- <input type="number" class="form-control" name="weather"
-								placeholder="札幌:016010"> <span
-								class="input-group-btn"> -->
-								<button type="submit"name="weather" class="btn btn-info" >
-								もっとくわしく</button>
-							<!-- </span> -->
-						<!-- </div> -->
+						<select name="weather"class="form-control">
+						<option value="選択肢0" selected>選んでください</option>
+						<option value="011000" id="11000">稚内</option>
+						<option value="012010" id="12010">旭川</option>
+						<option value="012020" id="12020">留萌</option>
+						<option value="013010" id="13010">網走</option>
+						<option value="013020" id="13020">北見</option>
+						<option value="013030" id="13030">紋別</option>
+						<option value="014010" id="14010">根室</option>
+						<option value="014020" id="14020">釧路</option>
+						<option value="014030" id="14030">帯広</option>
+						<option value="015010" id="15010">室蘭</option>
+						<option value="015020" id="15020">浦河</option>
+						<option value="017010" id="17010">函館</option>
+						<option value="017020" id="17020">江差</option>
+						<option value="016010" id="16010">札幌</option>
+						<option value="016020" id="16020">岩見沢</option>
+						<option value="016030" id="16030">俱知安</option>
+						</select>
+								<button type="submit" class="btn btn-info" >
+								詳細</button>
 					</form>
 				</div>
 			</div>
