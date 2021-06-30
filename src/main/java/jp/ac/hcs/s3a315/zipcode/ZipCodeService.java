@@ -34,6 +34,7 @@ public class ZipCodeService {
 			
 			//APIへアクセスして、結果を取得
 			String json=restTemplate.getForObject(URL, String.class,zipcode);
+			System.out.println(json);
 			
 			//エンティティクラスを生成
 			ZipCodeEntity zipCodeEntity = new ZipCodeEntity();
@@ -51,22 +52,33 @@ public class ZipCodeService {
 				String message=node.get("message").asText();
 				zipCodeEntity.setMessage(message);
 				
-				//resultsパラメータの抽出(配列分取得する)
-				for(JsonNode result:node.get("results")) {
-					//データクラスの生成(results1件分)
+				//メッセージに何か入力されたらエラー処理を行う。
+				if (node.get("results") == null) {
 					ZipCodeData zipCodeData=new ZipCodeData();
 					
-					zipCodeData.setZipcode(result.get("zipcode").asText());
-					zipCodeData.setPrefcode(result.get("prefcode").asText());
-					zipCodeData.setAddress1(result.get("address1").asText());
-					zipCodeData.setAddress2(result.get("address2").asText());
-					zipCodeData.setAddress3(result.get("address3").asText());
-					zipCodeData.setKana1(result.get("kana1").asText());
-					zipCodeData.setKana2(result.get("kana2").asText());
-					zipCodeData.setKana3(result.get("kana3").asText());
+					zipCodeData.setZipcode("条件に該当する住所は見つかりませんでした。");
 					
-					//可変長配列の末尾に追加
 					zipCodeEntity.getResults().add(zipCodeData);
+				}else {
+					//resultsパラメータの抽出(配列分取得する)
+					for(JsonNode result:node.get("results")) {
+						//データクラスの生成(results1件分)
+						ZipCodeData zipCodeData=new ZipCodeData();
+						
+						zipCodeData.setZipcode(result.get("zipcode").asText());
+						zipCodeData.setPrefcode(result.get("prefcode").asText());
+						zipCodeData.setAddress1(result.get("address1").asText());
+						zipCodeData.setAddress2(result.get("address2").asText());
+						zipCodeData.setAddress3(result.get("address3").asText());
+						zipCodeData.setKana1(result.get("kana1").asText());
+						zipCodeData.setKana2(result.get("kana2").asText());
+						zipCodeData.setKana3(result.get("kana3").asText());
+						
+						//可変長配列の末尾に追加
+						zipCodeEntity.getResults().add(zipCodeData);
+					}
+				
+				
 				}
 			}catch(IOException e) {
 				//例外発生時は、エラーメッセージの詳細を標準エラー出力
