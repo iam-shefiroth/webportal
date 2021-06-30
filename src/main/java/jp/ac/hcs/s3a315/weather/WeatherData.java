@@ -15,8 +15,11 @@ public class WeatherData {
 	/** 日付*/
 	private String dateLabel;
 	
+	/** 日付*/
+	private String description;
+	
+	
 	/** 予報*/
 	private String telop;
-	
 
 }

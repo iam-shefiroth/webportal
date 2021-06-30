@@ -17,8 +17,9 @@ public class WeatherEntity {
 	
 	/** タイトル*/
 	private String title;
-	/** 説明文*/
-	private String description;
+	
+	/** 説明文のリスト*/
+	private List<WeatherData2> description = new ArrayList<WeatherData2>();
 	
 	/** 天気予報のリスト*/
 	private List<WeatherData> forecasts = new ArrayList<WeatherData>();

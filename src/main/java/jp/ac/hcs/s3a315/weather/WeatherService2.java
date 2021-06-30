@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Transactional
 @Service
 
-public class WeatherService {
+public class WeatherService2 {
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -32,7 +32,7 @@ public class WeatherService {
 	 * @param weather 郵便番号(7桁、ハイフン無し)
 	 * @return ZipCodeEntity
 	 */
-	public WeatherEntity getWeather(String weather) {
+	public WeatherEntity getWeather2(String weather) {
 		
 		
 		//APIへアクセスして、結果を取得
@@ -61,9 +61,9 @@ public class WeatherService {
 				
 				weatherEntity.getForecasts().add(wetherData);
 			}else {
+
 				for(JsonNode forecast:node.get("forecasts")) {
 					//データクラスの生成(forecasts1件分)description
-					
 					//forecastsパラメータの抽出(配列分取得する)
 					WeatherData weatherData=new WeatherData();
 					
@@ -72,7 +72,6 @@ public class WeatherService {
 					
 					//可変長配列の末尾に追加
 					weatherEntity.getForecasts().add(weatherData);
-					
 
 				}
 				
