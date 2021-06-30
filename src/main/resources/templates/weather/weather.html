@@ -75,6 +75,11 @@
 				<li><span th:text="*{telop}"></span></li>
 				<li><span th:text="*{description}"></span></li>
 			</ul>
+			<ul th:each="description_one : ${weatherEntity.description}" th:object="${description_one}">
+				<li><span th:text="*{headlineText}"></span></li>
+				<li><span th:text="*{bodyText}"></span></li>
+				<li><span th:text="*{text}"></span></li>
+			</ul>
 		</div>
 	</div>
 

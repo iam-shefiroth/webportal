@@ -77,9 +77,18 @@ public class WeatherService {
 				}
 				
 
-			
-			
+				//descriptionパラメータの抽出
+				WeatherData weatherData=new WeatherData();
+				
+				  weatherData.setHeadlineText(node.get("description").get("headlineText").asText());
+				  weatherData.setBodyText(node.get("description").get("bodyText").asText());
+				  weatherData.setText(node.get("description").get("text").asText());
+				
+				//可変長配列の末尾に追加
+				weatherEntity.getDescription().add(weatherData);
+				
 			}
+
 		}catch(IOException e) {
 			//例外発生時は、エラーメッセージの詳細を標準エラー出力
 			e.printStackTrace();
