@@ -21,5 +21,17 @@ public class WeatherData {
 	
 	/** 予報*/
 	private String telop;
+	
+	
+	//説明
+	/**冒頭の詳細内容*/
+	private String headlineText;
+	
+	/** メインの詳細内容*/
+	private String bodyText;
+	
+	
+	/**詳細内容*/
+	private String text;
 
 }
