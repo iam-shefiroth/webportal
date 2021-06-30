@@ -67,9 +67,8 @@
 	<!-- コンテンツ -->
 	<div class="container">
 		<div class="content-box">
-			<h1>住所検索画面</h1>
-			<h2>郵便番号</h2>
-			<h3>検索結果</h3>
+			<h1>札幌の天気予報</h1>
+			<h3>詳細</h3>
 			<!-- 基本一件だが、API構造に従い繰り返す構文とする -->
 			<ul th:each="result : ${weatherEntity.results}" th:object="${result}">
 				<li><span th:text="*{dateLabel}"></span></li>
