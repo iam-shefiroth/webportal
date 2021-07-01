@@ -16,14 +16,14 @@ public class TaskController {
 	 * 
 	 * @param principal ログイン情報
 	 * @param model
-	 * @return 検索結果-天気予報
+	 * @return 検索結果-タスク情報
 	 */
 	
-	@PostMapping("/weather")
-	public String getWeather(Principal principal,Model model) {
+	@PostMapping("/task")
+	public String getTask(Principal principal,Model model) {
 		String returns = null;
-		TaskEntity TaskEntity = taskService.getTask(principal.getName());
-		model.addAttribute("TaskEntity",TaskEntity);
+		TaskEntity taskEntity = taskService.getTask(principal.getName());
+		model.addAttribute("taskEntity",taskEntity);
 		
 		returns = "task/task";
 		return returns;

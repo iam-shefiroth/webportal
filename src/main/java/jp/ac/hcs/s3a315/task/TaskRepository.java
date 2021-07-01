@@ -28,6 +28,8 @@ public class TaskRepository {
 	/*SQL全件取得 （期限日昇順）*/
 	private static final String SQL_DELETE_ONE =
 			"DELETE FROM task WHERE id = ?";
+	
+	
 	@Autowired
 	JdbcTemplate jdbc;
 	
