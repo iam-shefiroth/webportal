@@ -74,9 +74,22 @@ public class TaskRepository {
 	 */
 	
 	public int InsertOne(TaskData data)throws DataAccessException {
+		int rowNumber = jdbc.update(SQL_INSERT_ONE,data.getUser_id()
+				,data.getComment(),data.getLimitday());
+		return rowNumber;
 		
-		return 0;
-		
+	}
+	
+	/**
+	 * Taskテーブルのデータを一件削除する。
+	 * @param
+	 * @return
+	 * @throws DataAccessException
+	 */
+	
+	public int deleteOne(int id)throws DataAccessException{
+		int rowNumber = jdbc.update(SQL_DELETE_ONE,id);
+		return rowNumber;
 	}
 	
 	
