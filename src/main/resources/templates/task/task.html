@@ -40,7 +40,7 @@
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
 	<!-- 共通ヘッダ -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+	<nav class="navbar navbar-expand-lg navbar-dark btn btn-secondary">
 		<h1>
 			<a class="navbar-brand title-font" th:href="@{/}">WebPortal.com</a>
 		</h1>
@@ -81,14 +81,14 @@
 	
 	<hr>
 	
-	<table class="table" th:each="task : ${taskEntity.tasklist}">
+	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">内容</th>
 				<th scope="col">期限</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody th:each="task : ${taskEntity.tasklist}">
 			<tr>
 				<td>
 					<a th:href="@{'/task/delete/' + ${task.id}}">
