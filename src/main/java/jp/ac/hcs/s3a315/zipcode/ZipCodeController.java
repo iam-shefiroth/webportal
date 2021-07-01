@@ -30,16 +30,20 @@ public class ZipCodeController {
 	@PostMapping("/zip")
 	public String getZipCode(@RequestParam("zipcode") String zipcode,
 			Principal principal,Model model) {
+		String returns = null;
 		if(zipcode == "") {
 			System.out.println("null");
-			return "index";
+			returns = "index";
+		}else {
+			ZipCodeEntity zipCodeEntity = zipCodeService.getZip(zipcode);
+			model.addAttribute("zipCodeEntity",zipCodeEntity);
+			
+			log.info("「" + principal.getName() + "」input addressnumber : " + zipcode);
+			returns = "zipcode/zipcode";
 		}
 		
-		ZipCodeEntity zipCodeEntity = zipCodeService.getZip(zipcode);
-		model.addAttribute("zipCodeEntity",zipCodeEntity);
 		
-		log.info("「" + principal.getName() + "」input addressnumber : " + zipcode);
-		return "zipcode/zipcode";
+		return returns;
 	}
 	
 

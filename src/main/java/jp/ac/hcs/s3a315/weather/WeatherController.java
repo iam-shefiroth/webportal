@@ -27,12 +27,18 @@ public class WeatherController{
 	@PostMapping("/weather")
 	public String getWeather(@RequestParam("weather") String weather,
 			Principal principal,Model model) {
+		String returns = null;
 		System.out.println(weather + "番号");
-		
-		WeatherEntity weatherEntity = weatherService.getWeather(weather);
-		model.addAttribute("weatherEntity",weatherEntity);
-		
-		log.info("「" + principal.getName() + "」choise area to wrather : " + weather);
-		return "weather/weather";
+		if (weather == "000000") {
+			log.info("choise miss");
+			returns = "index";
+		}else {
+			WeatherEntity weatherEntity = weatherService.getWeather(weather);
+			model.addAttribute("weatherEntity",weatherEntity);
+			
+			log.info("「" + principal.getName() + "」choise area to wrather : " + weather);
+			returns = "weather/weather";
+		}
+		return returns;
 	}
 }
