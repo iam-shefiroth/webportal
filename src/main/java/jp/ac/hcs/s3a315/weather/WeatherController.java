@@ -36,7 +36,8 @@ public class WeatherController{
 			WeatherEntity weatherEntity = weatherService.getWeather(weather);
 			model.addAttribute("weatherEntity",weatherEntity);
 			
-			log.info("「" + principal.getName() + "」choise area to wrather : " + weather);
+			log.info("「" + principal.getName() + "」choise area to weather : " + 
+			weatherEntity.getTitle());
 			returns = "weather/weather";
 		}
 		return returns;
