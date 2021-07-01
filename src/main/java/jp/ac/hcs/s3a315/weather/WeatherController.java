@@ -29,7 +29,7 @@ public class WeatherController{
 			Principal principal,Model model) {
 		String returns = null;
 		System.out.println(weather + "番号");
-		if (weather == "000000") {
+		if (weather == "") {
 			log.info("choise miss");
 			returns = "index";
 		}else {
