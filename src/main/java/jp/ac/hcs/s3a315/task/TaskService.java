@@ -21,8 +21,16 @@ public class TaskService {
 	 * @return taskEntity
 	 */
 	
-	public TaskEntity getTask() {
-		return null;
+	public TaskEntity getTask(String name) {
+		
+		//タスクエンティティの作成
+		TaskEntity taskEntity = new TaskEntity();
+		
+		//タスクリポジトリ―（SQL取得）の作成
+		TaskRepository taskRepository = new TaskRepository();
+		
+		
+		return taskEntity;
 	}
 
 }

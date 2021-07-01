@@ -22,7 +22,7 @@ public class TaskController {
 	@PostMapping("/weather")
 	public String getWeather(Principal principal,Model model) {
 		String returns = null;
-		TaskEntity TaskEntity = taskService.getTask();
+		TaskEntity TaskEntity = taskService.getTask(principal.getName());
 		model.addAttribute("TaskEntity",TaskEntity);
 		
 		returns = "task/task";

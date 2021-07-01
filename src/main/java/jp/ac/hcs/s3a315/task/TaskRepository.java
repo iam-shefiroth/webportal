@@ -82,8 +82,8 @@ public class TaskRepository {
 	
 	/**
 	 * Taskテーブルのデータを一件削除する。
-	 * @param
-	 * @return
+	 * @param id 削除するユーザ情報
+	 * @return 削除データ数
 	 * @throws DataAccessException
 	 */
 	
