@@ -30,7 +30,7 @@ public class WeatherService {
 	/**
 	 * 指定した郵便番号に紐づく郵便番号情報を取得する
 	 * @param weather 郵便番号(7桁、ハイフン無し)
-	 * @return ZipCodeEntity
+	 * @return weatherEntity
 	 */
 	public WeatherEntity getWeather(String weather) {
 		
