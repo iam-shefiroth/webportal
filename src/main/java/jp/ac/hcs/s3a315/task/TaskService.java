@@ -1,9 +1,9 @@
 package jp.ac.hcs.s3a315.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *タスク情報を配列に追加する操作を行う
@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class TaskService {
 	
 	@Autowired
-	RestTemplate restTemplate;
+	TaskRepository taskRepository;
 	
 	/**
 	 * ログイン中のidからtaskデータを抽出する。
@@ -24,11 +24,15 @@ public class TaskService {
 	public TaskEntity getTask(String name) {
 		
 		//タスクエンティティの作成
-		TaskEntity taskEntity = new TaskEntity();
-		
-		//タスクリポジトリ―（SQL取得）の作成
-		TaskRepository taskRepository = new TaskRepository();
-		
+		TaskEntity taskEntity;
+		try {
+			//タスクリポジトリ―（SQL取得）の作成
+			taskEntity = taskRepository.selectAll(name);
+			
+		}catch(DataAccessException e){
+			e.printStackTrace();
+			taskEntity = null;
+		}
 		
 		return taskEntity;
 	}
