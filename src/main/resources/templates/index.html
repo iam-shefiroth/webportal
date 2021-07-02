@@ -71,12 +71,13 @@
 			<div class="col-sm-6">
 				<div class="content-box">
 					<h2>住所検索 - 郵便番号</h2>
-					<form method="post" th:action="@{/zip}">
+					<form method="post" th:action="@{/zip}" name="zip">
 						<div class="input-group">
 							<input type="number" class="form-control" name="zipcode"
 								placeholder="郵便番号 : XXXXXXX"> <span
 								class="input-group-btn">
-								<button type="submit" class="btn btn-info">検索</button>
+								<button type="submit" class="btn btn-info"
+								onclick="return check()">検索</button>
 							</span>
 						</div>
 					</form>
@@ -145,9 +146,18 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<!-- <script>
-	郵便番号のアラート処理
-	alert('郵便番号が正しくありません');
-	</script> -->
+	<!-- 郵便番号の未入力チェック-->
+    <script type="text/javascript">
+    	function check(){
+    		if (zip.zipcode.value == ""){
+    			//条件に一致する場合(メールアドレスが空の場合)
+    			alert("郵便番号は未入力です。");    //エラーメッセージを出力
+    			return false;    //送信ボタン本来の動作をキャンセルします
+    			}else{
+    				//条件に一致しない場合(メールアドレスが入力されている場合)
+    				return true;    //送信ボタン本来の動作を実行します
+    			}
+    		}
+    </script>
 </body>
 </html>

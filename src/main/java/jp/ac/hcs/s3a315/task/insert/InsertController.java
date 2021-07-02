@@ -44,7 +44,7 @@ public class InsertController {
 		
 		//タスク追加情報をTaskDataクラスを利用
 		TaskData data = new TaskData();
-		System.out.println("いんさーと2");
+		
 		//期限日をDate型に変換する
 		Date sqlDate= Date.valueOf(limitday);
 		
@@ -52,15 +52,12 @@ public class InsertController {
 		data.setComment(comment);
 		data.setLimitday(sqlDate);
 		data.setUser_id(principal.getName());
-		System.out.println("いんさーと3");
 		
 		
-
 		
 		
 		results = "task/task";
 		insertService.setTask(data);
-		System.out.println("いんさーと4");
 		
 		TaskEntity taskEntity = insertService.getTask(principal.getName());
 		model.addAttribute("taskEntity",taskEntity);
