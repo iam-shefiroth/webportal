@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *タスク情報を配列に追加する操作を行う
+ *タスク情報を配列に入れる操作を行う
  */
 
 @Transactional
@@ -36,6 +36,17 @@ public class TaskService {
 		}
 		
 		return taskEntity;
+	}
+	
+public void setTask(TaskData data) {
+		
+		try {
+			taskRepository.insertOne(data);
+			
+		}catch (DataAccessException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }

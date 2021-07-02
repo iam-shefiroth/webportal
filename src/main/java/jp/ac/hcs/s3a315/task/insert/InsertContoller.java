@@ -1,38 +1,31 @@
-package jp.ac.hcs.s3a315.task;
+package jp.ac.hcs.s3a315.task.insert;
 
 import java.security.Principal;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.ac.hcs.s3a315.task.TaskData;
+
 @Controller
-public class TaskController {
+public class InsertContoller {
 	
 	@Autowired
-	private TaskService taskService;
+	private InsertService insertService;
 	/**
-	 * ログインしているユーザのタスク情報を取得する。
-	 * 
+	 * ログインしているユーザが追加したいタスク情報を挿入する。
+	 * @param comment タスク内容
+	 * @param limitday 期限
 	 * @param principal ログイン情報
-	 * @param model
-	 * @return 検索結果-タスク情報
+	 * 
 	 */
 	
-	@PostMapping("/task")
-	public String getTask(Principal principal,Model model) {
-		String returns = null;
-		System.out.println("たすく「");
-		TaskEntity taskEntity = taskService.getTask(principal.getName());
-		model.addAttribute("taskEntity",taskEntity);
-		
-		returns = "task/task";
-		return returns;
-	}
-	@PostMapping("/insert")
+
+	
+	@PostMapping("/task/insert")
 	public String insertTask(@RequestParam("commmet") String comment,
 			@RequestParam("limitday") String limitday,Principal principal){
 		//タスク追加情報をTaskDataクラスを利用
@@ -48,7 +41,7 @@ public class TaskController {
 		
 		String results = null;
 		results = "task/task";
-		taskService.setTask(data);
+		insertService.setTask(data);
 		
 		return results;
 	}
