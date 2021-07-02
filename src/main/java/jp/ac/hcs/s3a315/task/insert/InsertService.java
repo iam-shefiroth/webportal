@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.ac.hcs.s3a315.task.TaskData;
+import jp.ac.hcs.s3a315.task.TaskEntity;
 import jp.ac.hcs.s3a315.task.TaskRepository;
 
 /**
@@ -31,6 +32,28 @@ public class InsertService {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * ログイン中のidからtaskデータを抽出する。
+	 * @param name (user_id)
+	 * @return taskEntity
+	 */
+	
+	public TaskEntity getTask(String name) {
+		
+		//タスクエンティティの作成
+		TaskEntity taskEntity;
+		try {
+			//タスクリポジトリ―（SQL取得）の作成
+			taskEntity = taskRepository.selectAll(name);
+			
+		}catch(DataAccessException e){
+			e.printStackTrace();
+			taskEntity = null;
+		}
+		
+		return taskEntity;
 	}
 	
 	

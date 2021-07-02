@@ -37,16 +37,5 @@ public class TaskService {
 		
 		return taskEntity;
 	}
-	
-public void setTask(TaskData data) {
-		
-		try {
-			taskRepository.insertOne(data);
-			
-		}catch (DataAccessException e){
-			e.printStackTrace();
-		}
-		
-	}
 
 }

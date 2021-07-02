@@ -5,10 +5,12 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.ac.hcs.s3a315.task.TaskData;
+import jp.ac.hcs.s3a315.task.TaskEntity;
 
 @Controller
 public class InsertContoller {
@@ -26,11 +28,14 @@ public class InsertContoller {
 
 	
 	@PostMapping("/task/insert")
-	public String insertTask(@RequestParam("commmet") String comment,
-			@RequestParam("limitday") String limitday,Principal principal){
+	public String insertTask(@RequestParam("comment") String comment,
+			@RequestParam("limitday") String limitday,Principal principal,Model model){
+		
+		String results = null;
+		
 		//タスク追加情報をTaskDataクラスを利用
 		TaskData data = new TaskData();
-		System.out.println("いんさーと「");
+		System.out.println("いんさーと2");
 		//期限日をDate型に変換する
 		Date sqlDate= Date.valueOf(limitday);
 		
@@ -38,10 +43,19 @@ public class InsertContoller {
 		data.setComment(comment);
 		data.setLimitday(sqlDate);
 		data.setUser_id(principal.getName());
+		System.out.println("いんさーと3");
 		
-		String results = null;
+		
+
+		
+		
 		results = "task/task";
 		insertService.setTask(data);
+		System.out.println("いんさーと4");
+		
+		TaskEntity taskEntity = insertService.getTask(principal.getName());
+		model.addAttribute("taskEntity",taskEntity);
+		 
 		
 		return results;
 	}
