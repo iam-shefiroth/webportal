@@ -52,16 +52,21 @@ public class ZipCodeService {
 				String message=node.get("message").asText();
 				zipCodeEntity.setMessage(message);
 				
+				String results = node.get("results").asText();
+				System.out.println(results);
+				
 				//メッセージに何か入力されたらエラー処理を行う。
-				if (node.get("results") == null) {
+				if (results == "null") {
 					ZipCodeData zipCodeData=new ZipCodeData();
-					
+				
 					zipCodeData.setZipcode("条件に該当する住所は見つかりませんでした。");
 					
 					zipCodeEntity.getResults().add(zipCodeData);
-				}else {
+				}
+				else {
 					//resultsパラメータの抽出(配列分取得する)
 					for(JsonNode result:node.get("results")) {
+						
 						//データクラスの生成(results1件分)
 						ZipCodeData zipCodeData=new ZipCodeData();
 						

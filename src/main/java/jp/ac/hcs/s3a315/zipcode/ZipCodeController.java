@@ -31,16 +31,11 @@ public class ZipCodeController {
 	public String getZipCode(@RequestParam("zipcode") String zipcode,
 			Principal principal,Model model) {
 		String returns = null;
-		if(zipcode == "") {
-			System.out.println("null");
-			returns = "index";
-		}else {
-			ZipCodeEntity zipCodeEntity = zipCodeService.getZip(zipcode);
-			model.addAttribute("zipCodeEntity",zipCodeEntity);
-			
-			log.info("「" + principal.getName() + "」input addressnumber : " + zipcode);
-			returns = "zipcode/zipcode";
-		}
+		ZipCodeEntity zipCodeEntity = zipCodeService.getZip(zipcode);
+		model.addAttribute("zipCodeEntity",zipCodeEntity);
+		
+		log.info("「" + principal.getName() + "」input addressnumber : " + zipcode);
+		returns = "zipcode/zipcode";
 		
 		
 		return returns;
