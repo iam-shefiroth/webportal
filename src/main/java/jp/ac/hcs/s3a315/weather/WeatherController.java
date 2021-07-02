@@ -24,15 +24,25 @@ public class WeatherController{
 	 * @return 検索結果-天気予報
 	 */
 	
+	//都市コード改ざんチェック（正規表現）
+	public static final String TAMPERING = ".*[0-9]{6}.*";
+	
 	@PostMapping("/weather")
 	public String getWeather(@RequestParam("weather") String weather,
 			Principal principal,Model model) {
 		String returns = null;
 		System.out.println(weather + "番号");
 		if (weather == "") {
+			System.out.println("1");
 			log.info("choise miss");
 			returns = "index";
+			//改ざんされてるかどうか確認
+		}else if(!(weather.matches(TAMPERING))) {
+			System.out.println("2");
+			log.info("Tampering!!");
+			returns = "index";
 		}else {
+			System.out.println("3");
 			WeatherEntity weatherEntity = weatherService.getWeather(weather);
 			model.addAttribute("weatherEntity",weatherEntity);
 			
