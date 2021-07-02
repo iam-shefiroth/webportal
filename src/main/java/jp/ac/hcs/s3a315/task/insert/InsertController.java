@@ -13,7 +13,7 @@ import jp.ac.hcs.s3a315.task.TaskData;
 import jp.ac.hcs.s3a315.task.TaskEntity;
 
 @Controller
-public class InsertContoller {
+public class InsertController {
 	
 	@Autowired
 	private InsertService insertService;
@@ -25,6 +25,9 @@ public class InsertContoller {
 	 * 
 	 */
 	
+	//正規表現
+	public static final String JUDGE = "";
+	
 
 	
 	@PostMapping("/task/insert")
@@ -32,6 +35,12 @@ public class InsertContoller {
 			@RequestParam("limitday") String limitday,Principal principal,Model model){
 		
 		String results = null;
+		
+		if (comment == null || comment.length() >= 50 || 
+				limitday == null ) {
+			
+		}
+		
 		
 		//タスク追加情報をTaskDataクラスを利用
 		TaskData data = new TaskData();
