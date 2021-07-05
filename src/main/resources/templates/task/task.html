@@ -70,7 +70,9 @@
 	
 	<hr>
 	
-	<div class="alert alert-success" th:if="" role="alert">A simple success alert—check it out!
+	<div class="alert alert-success" th:if="${isresult}" role="alert">正常に処理しました。
+	</div>
+	<div class="alert alert-success" th:if="${!isresult}" role="alert">致命的なエラーが発生しました。
 	</div>
 	<form method="post" th:action="@{/task/insert}">
 		<div class="input-group">
