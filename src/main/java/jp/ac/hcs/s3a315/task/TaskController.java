@@ -33,10 +33,13 @@ public class TaskController {
 	 * @return 検索結果-タスク情報
 	 */
 	
+	// 挿入処理の期限日で不正取得かどうかをチェックする yyyy-MM-dd
+	public static final String JUDGE_DATE = 
+			"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
+	
 	@PostMapping("/task")
 	public String getTask(Principal principal,Model model) {
 		String returns = null;
-		System.out.println("たすく「");
 		TaskEntity taskEntity = taskService.getTask(principal.getName());
 		model.addAttribute("taskEntity",taskEntity);
 		
@@ -93,36 +96,43 @@ public class TaskController {
 	   */
 	  
 	  @PostMapping("/task/insert") 
-	  public String insertTask(@RequestParam("comment") String comment,
-			  @RequestParam("limitday") String limitday,Principal principal,Model model){
-	  
-	  
-	  if (comment == null || comment.length() >= 50 || limitday == null ) 
-	  {
-	  
+	  public String insertTask(@RequestParam(name = "comment",required = false) String comment,
+			  @RequestParam(name = "limitday",required = false) String limitday,Principal principal,Model model){
+		  System.out.println(limitday);
+	  //タスク内容と期限日のチェックを行う。
+		  if (comment == null || limitday == null) {
+			  log.info("ELEMENT ERROR");
+		  }else if (comment == "" || comment.length() >= 50 || 
+				  limitday == "") {
+			  System.out.print("1");
+			  log.info("INSERT ERROR");
+		  }else if(limitday != JUDGE_DATE) {
+			  System.out.print("2");
+			  log.info("Tampering!!");
+		  }else {
+			  //タスク追加情報をTaskDataクラスを利用 
+		  System.out.println("3");
+		  TaskData data = new TaskData();
+		  
+		  //期限日をDate型に変換する 
+		  Date sqlDate= Date.valueOf(limitday);
+		  
+		  data.setComment(comment); data.setLimitday(sqlDate);
+		  data.setUser_id(principal.getName());
+		  
+		  log.info("「" + principal.getName() + "」insert comment:" + comment +
+		  " limitday:" + data.getLimitday()); 
+		  boolean isSuccess = taskService.setTask(data); 
+		  if (isSuccess){
+			  log.info("You are SUCSESS"); 
+		  }else {
+			  log.info("You are FAILED");
+		  }
 	  }
-	  
-	  
-	  //タスク追加情報をTaskDataクラスを利用 
-	  TaskData data = new TaskData();
-	  
-	  //期限日をDate型に変換する 
-	  Date sqlDate= Date.valueOf(limitday);
-	  
-	  data.setComment(comment); data.setLimitday(sqlDate);
-	  data.setUser_id(principal.getName());
-	  
-	  log.info("「" + principal.getName() + "insert comment:" + comment +
-	  "limitday:" + data.getLimitday()); 
-	  boolean isSuccess = taskService.setTask(data); 
-	  if (isSuccess){
-		  log.info("成功"); 
-	  }else {
-		  log.info("失敗"); }
-	  
 	  return getTask(principal,model);
 	  
 	  }
+	  
 	  
 	  /**
 	   * タスクの削除
@@ -137,7 +147,6 @@ public class TaskController {
 		public String deleteTask(@PathVariable("task.id") int id,
 				Principal principal,Model model){
 			
-			String results = null;
 			System.out.println("御陀仏");
 			
 			/*チェック（あとでやる）
@@ -147,7 +156,6 @@ public class TaskController {
 			 */
 			
 			
-			results = "task/task";
 			taskService.deleteTask(id);
 			
 			 
