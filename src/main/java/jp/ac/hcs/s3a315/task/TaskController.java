@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import jp.ac.hcs.s3a315.WebConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +39,13 @@ public class TaskController {
 			"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
 	
 	@PostMapping("/task")
-	public String getTask(Principal principal,Model model) {
+	public String getTask(Principal principal,Model model,ModelAndView mav) {
 		String returns = null;
 		TaskEntity taskEntity = taskService.getTask(principal.getName());
 		model.addAttribute("taskEntity",taskEntity);
+		
+		mav.setViewName("task");
+		mav.addObject("isresult",false);
 		
 		returns = "task/task";
 		return returns;
@@ -97,22 +101,27 @@ public class TaskController {
 	  
 	  @PostMapping("/task/insert") 
 	  public String insertTask(@RequestParam(name = "comment",required = false) String comment,
-			  @RequestParam(name = "limitday",required = false) String limitday,Principal principal,Model model){
+			  @RequestParam(name = "limitday",required = false) String limitday
+			  ,Principal principal,Model model,ModelAndView mav){
 		  System.out.println(limitday);
 	  //タスク内容と期限日のチェックを行う。
 		  if (comment == null || limitday == null) {
 			  log.info("ELEMENT ERROR");
+			  mav.addObject("isresult",false);
 		  }else if (comment == "" || comment.length() >= 50 || 
 				  limitday == "") {
 			  System.out.print("1");
 			  log.info("INSERT ERROR");
+			  mav.addObject("isresult",false);
 		  }else if(limitday != JUDGE_DATE) {
 			  System.out.print("2");
+			  mav.addObject("isresult",false);
 			  log.info("Tampering!!");
 		  }else {
 			  //タスク追加情報をTaskDataクラスを利用 
 		  System.out.println("3");
 		  TaskData data = new TaskData();
+		  
 		  
 		  //期限日をDate型に変換する 
 		  Date sqlDate= Date.valueOf(limitday);
@@ -124,12 +133,14 @@ public class TaskController {
 		  " limitday:" + data.getLimitday()); 
 		  boolean isSuccess = taskService.setTask(data); 
 		  if (isSuccess){
-			  log.info("You are SUCSESS"); 
+			  log.info("You are SUCSESS");
+			  mav.addObject("isresult",true);
 		  }else {
 			  log.info("You are FAILED");
+			  mav.addObject("isresult",false);
 		  }
 	  }
-	  return getTask(principal,model);
+	  return getTask(principal,model,mav);
 	  
 	  }
 	  
@@ -145,7 +156,7 @@ public class TaskController {
 	  
 	  @RequestMapping("/task/delete/{task.id}")
 		public String deleteTask(@PathVariable("task.id") int id,
-				Principal principal,Model model){
+				Principal principal,Model model,ModelAndView mav){
 			
 			System.out.println("御陀仏");
 			
@@ -159,7 +170,7 @@ public class TaskController {
 			taskService.deleteTask(id);
 			
 			 
-			return getTask(principal,model);
+			return getTask(principal,model,mav);
 		}
 	 
 
