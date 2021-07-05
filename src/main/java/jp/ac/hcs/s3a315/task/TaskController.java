@@ -2,6 +2,7 @@ package jp.ac.hcs.s3a315.task;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,7 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.ac.hcs.s3a315.WebConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -76,35 +80,79 @@ public class TaskController {
 	}
 	
 
-	/*
-	 * //insertcontrollerの追加 正解ver
-	 * 
-	 * @PostMapping("/task/insert") public String
-	 * insertTask(@RequestParam("comment") String comment,
-	 * 
-	 * @RequestParam("limitday") String limitday,Principal principal,Model model){
-	 * 
-	 * 
-	 * if (comment == null || comment.length() >= 50 || limitday == null ) {
-	 * 
-	 * }
-	 * 
-	 * 
-	 * //タスク追加情報をTaskDataクラスを利用 TaskData data = new TaskData();
-	 * 
-	 * //期限日をDate型に変換する Date sqlDate= Date.valueOf(limitday);
-	 * 
-	 * data.setComment(comment); data.setLimitday(sqlDate);
-	 * data.setUser_id(principal.getName());
-	 * 
-	 * log.info("「" + principal.getName() + "insert comment:" + comment +
-	 * "limitday:" + data.getLimitday()); boolean isSuccess =
-	 * taskService.setTask(data); if (isSuccess) { log.info("成功"); }else {
-	 * log.info("失敗"); }
-	 * 
-	 * return getTaskList(principal,model);
-	 * 
-	 * }
-	 */
+	
+	  /**
+	   * 
+	   * タスクの追加
+	   * @param comment 入力したタスク内容
+	   * @param limitday 入力した期限日
+	   * @param principal ログイン情報
+	   * @param model
+	   * 
+	   * @return getTask このクラスメインメソッドに戻す
+	   */
+	  
+	  @PostMapping("/task/insert") 
+	  public String insertTask(@RequestParam("comment") String comment,
+			  @RequestParam("limitday") String limitday,Principal principal,Model model){
+	  
+	  
+	  if (comment == null || comment.length() >= 50 || limitday == null ) 
+	  {
+	  
+	  }
+	  
+	  
+	  //タスク追加情報をTaskDataクラスを利用 
+	  TaskData data = new TaskData();
+	  
+	  //期限日をDate型に変換する 
+	  Date sqlDate= Date.valueOf(limitday);
+	  
+	  data.setComment(comment); data.setLimitday(sqlDate);
+	  data.setUser_id(principal.getName());
+	  
+	  log.info("「" + principal.getName() + "insert comment:" + comment +
+	  "limitday:" + data.getLimitday()); 
+	  boolean isSuccess = taskService.setTask(data); 
+	  if (isSuccess){
+		  log.info("成功"); 
+	  }else {
+		  log.info("失敗"); }
+	  
+	  return getTask(principal,model);
+	  
+	  }
+	  
+	  /**
+	   * タスクの削除
+	   * 
+	   * @param id リンクをクリックした際に取得したID
+	   * @param principal ログイン情報
+	   * @param model
+	   * @return このクラスメインメソッドに戻す
+	   */
+	  
+	  @RequestMapping("/task/delete/{task.id}")
+		public String deleteTask(@PathVariable("task.id") int id,
+				Principal principal,Model model){
+			
+			String results = null;
+			System.out.println("御陀仏");
+			
+			/*チェック（あとでやる）
+			 * if (comment == null || comment.length() >= 50 || limitday == null ) {
+			 * 
+			 * }
+			 */
+			
+			
+			results = "task/task";
+			taskService.deleteTask(id);
+			
+			 
+			return getTask(principal,model);
+		}
+	 
 
 }

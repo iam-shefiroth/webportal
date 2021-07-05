@@ -81,5 +81,22 @@ public class TaskService {
 		byte[] bytes = Files.readAllBytes(p);
 		return bytes;
 	}
+	
+	/**
+	 * 受け渡ったIDからSQLを削除する。
+	 * @param num sqlのID番号
+	 */
+	
+	public void deleteTask(int num) {
+		
+		try {
+			taskRepository.deleteOne(num);
+			
+		}catch (DataAccessException e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 }
