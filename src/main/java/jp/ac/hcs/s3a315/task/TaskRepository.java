@@ -94,6 +94,19 @@ public class TaskRepository {
 		return rowNumber;
 	}
 	
+	/**
+	 * TaskテーブルからユーザIDをキーにデータを全件取得し、CSVファイルとしてサーバに保存する.
+	 * @param user_id 検索するユーザID
+	 * @throws DataAccessException
+	 */
+	public void tasklistCsvOut(String user_id) throws DataAccessException {
+
+		// CSVファイル出力用設定
+		TaskRowCallbackHandler handler = new TaskRowCallbackHandler();
+
+		jdbc.query(SQL_SELECT_ALL, handler, user_id);
+	}
+	
 	
 	
 
