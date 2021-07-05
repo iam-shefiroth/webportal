@@ -42,6 +42,7 @@ public class InsertController {
 		}
 		
 		
+		
 		//タスク追加情報をTaskDataクラスを利用
 		TaskData data = new TaskData();
 		

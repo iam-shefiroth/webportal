@@ -1,5 +1,5 @@
 /**
- * 
+ * task.htmlのJavaScript
  */
 function delete_verification(){
 	var result = window.confirm("このタスクを削除してもよろしいですか？");

@@ -76,13 +76,14 @@ public class TaskController {
 	}
 	
 
-	/* insertcontrollerの追加 正解ver
+	/*
+	 * //insertcontrollerの追加 正解ver
+	 * 
 	 * @PostMapping("/task/insert") public String
 	 * insertTask(@RequestParam("comment") String comment,
 	 * 
 	 * @RequestParam("limitday") String limitday,Principal principal,Model model){
 	 * 
-	 * String results = null;
 	 * 
 	 * if (comment == null || comment.length() >= 50 || limitday == null ) {
 	 * 
@@ -93,20 +94,17 @@ public class TaskController {
 	 * 
 	 * //期限日をDate型に変換する Date sqlDate= Date.valueOf(limitday);
 	 * 
-	 * 
 	 * data.setComment(comment); data.setLimitday(sqlDate);
 	 * data.setUser_id(principal.getName());
 	 * 
+	 * log.info("「" + principal.getName() + "insert comment:" + comment +
+	 * "limitday:" + data.getLimitday()); boolean isSuccess =
+	 * taskService.setTask(data); if (isSuccess) { log.info("成功"); }else {
+	 * log.info("失敗"); }
 	 * 
+	 * return getTaskList(principal,model);
 	 * 
-	 * 
-	 * results = "task/task"; taskService.setTask(data);
-	 * 
-	 * TaskEntity taskEntity = taskService.getTask(principal.getName());
-	 * model.addAttribute("taskEntity",taskEntity);
-	 * 
-	 * 
-	 * return taskEntity(principal,model); }
+	 * }
 	 */
 
 }

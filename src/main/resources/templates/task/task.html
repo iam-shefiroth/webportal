@@ -92,7 +92,7 @@
 		<tbody th:each="task : ${taskEntity.tasklist}">
 			<tr>
 				<td>
-					<a th:href="@{'/task/delete/' + ${task.id}}" onclick="delete_verification()">
+					<a th:href="@{'/task/delete/' + ${task.id}}" onclick="return delete_verification()">
 					<span th:text="${task.comment}"></span></a>
 				</td>
 				<td>

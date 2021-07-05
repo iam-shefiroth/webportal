@@ -48,7 +48,7 @@ public class TaskService {
 	 * @param data タスクデータ追加情報
 	 */
 
-	public void setTask(TaskData data) {
+	public boolean setTask(TaskData data) {
 		
 		try {
 			taskRepository.insertOne(data);
@@ -57,6 +57,7 @@ public class TaskService {
 			e.printStackTrace();
 		}
 		
+		return true;
 	}
 	
 	/**
