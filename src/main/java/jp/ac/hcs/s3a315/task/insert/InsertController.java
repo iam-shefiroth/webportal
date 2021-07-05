@@ -31,7 +31,7 @@ public class InsertController {
 
 	
 	@PostMapping("/task/insert")
-	public String insertTask(@RequestParam("comment") String comment,
+	public String insertTask(@RequestParam(name = "comment",required = false) String comment,
 			@RequestParam("limitday") String limitday,Principal principal,Model model){
 		
 		String results = null;
