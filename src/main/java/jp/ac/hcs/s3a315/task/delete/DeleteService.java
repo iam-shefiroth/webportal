@@ -2,10 +2,12 @@ package jp.ac.hcs.s3a315.task.delete;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import jp.ac.hcs.s3a315.task.TaskEntity;
 import jp.ac.hcs.s3a315.task.TaskRepository;
 
+@Service
 public class DeleteService {
 	
 	@Autowired
