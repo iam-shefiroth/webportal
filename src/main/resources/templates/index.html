@@ -34,7 +34,7 @@
 	href="../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
-
+<script th:src="@{/js/main.js}"></script>
 </head>
 
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
@@ -77,7 +77,7 @@
 								placeholder="郵便番号 : XXXXXXX"> <span
 								class="input-group-btn">
 								<button type="submit" class="btn btn-info"
-								onclick="return check()">検索</button>
+								onclick="zip_check()">検索</button>
 							</span>
 						</div>
 					</form>
@@ -87,7 +87,7 @@
 			<div class="col-sm-6">
 				<div class="content-box">
 					<h2>天気予報</h2>
-					<form method="post" th:action="@{/weather}">
+					<form method="post" th:action="@{/weather}" name="weather">
 						<select name="weather"class="form-control">
 						<option value="" selected>選んでください</option>
 						<option value="011000" id="11000">稚内</option>
@@ -107,7 +107,7 @@
 						<option value="016020" id="16020">岩見沢</option>
 						<option value="016030" id="16030">俱知安</option>
 						</select>
-								<button type="submit" class="btn btn-info" >
+								<button type="submit" class="btn btn-info"onclick="weather_check()" >
 								詳細</button>
 					</form>
 				</div>
@@ -146,18 +146,5 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<!-- 郵便番号の未入力チェック-->
-    <script type="text/javascript">
-    	function check(){
-    		if (zip.zipcode.value == ""){
-    			//条件に一致する場合(メールアドレスが空の場合)
-    			alert("郵便番号が未入力です。");    //エラーメッセージを出力
-    			return false;    //送信ボタン本来の動作をキャンセルします
-    			}else{
-    				//条件に一致しない場合(メールアドレスが入力されている場合)
-    				return true;    //送信ボタン本来の動作を実行します
-    			}
-    		}
-    </script>
 </body>
 </html>
