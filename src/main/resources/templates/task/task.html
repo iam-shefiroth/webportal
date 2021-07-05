@@ -34,6 +34,7 @@
 	href="../static/css/ress.css">
 <link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
+	<script th:src="@{/js/task.js}"></script>
 
 </head>
 
@@ -91,7 +92,7 @@
 		<tbody th:each="task : ${taskEntity.tasklist}">
 			<tr>
 				<td>
-					<a th:href="@{'/task/delete/' + ${task.id}}">
+					<a th:href="@{'/task/delete/' + ${task.id}}" onclick="return check()">
 					<span th:text="${task.comment}"></span></a>
 				</td>
 				<td>
