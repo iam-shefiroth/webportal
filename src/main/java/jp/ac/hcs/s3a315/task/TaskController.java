@@ -74,5 +74,39 @@ public class TaskController {
 		// CSVファイルを端末へ送信
 		return new ResponseEntity<byte[]>(bytes, header, HttpStatus.OK);
 	}
+	
+
+	/*
+	 * @PostMapping("/task/insert") public String
+	 * insertTask(@RequestParam("comment") String comment,
+	 * 
+	 * @RequestParam("limitday") String limitday,Principal principal,Model model){
+	 * 
+	 * String results = null;
+	 * 
+	 * if (comment == null || comment.length() >= 50 || limitday == null ) {
+	 * 
+	 * }
+	 * 
+	 * 
+	 * //タスク追加情報をTaskDataクラスを利用 TaskData data = new TaskData();
+	 * 
+	 * //期限日をDate型に変換する Date sqlDate= Date.valueOf(limitday);
+	 * 
+	 * 
+	 * data.setComment(comment); data.setLimitday(sqlDate);
+	 * data.setUser_id(principal.getName());
+	 * 
+	 * 
+	 * 
+	 * 
+	 * results = "task/task"; taskService.setTask(data);
+	 * 
+	 * TaskEntity taskEntity = taskService.getTask(principal.getName());
+	 * model.addAttribute("taskEntity",taskEntity);
+	 * 
+	 * 
+	 * return taskEntity(principal,model); }
+	 */
 
 }
