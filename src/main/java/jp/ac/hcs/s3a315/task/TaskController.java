@@ -3,6 +3,7 @@ package jp.ac.hcs.s3a315.task;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.Date;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -104,17 +105,18 @@ public class TaskController {
 			  @RequestParam(name = "limitday",required = false) String limitday
 			  ,Principal principal,Model model,ModelAndView mav){
 		  System.out.println(limitday);
+		  Pattern p = Pattern.compile(JUDGE_DATE);
 	  //タスク内容と期限日のチェックを行う。
 		  if (comment == null || limitday == null) {
 			  log.info("ELEMENT ERROR");
 			  mav.addObject("isresult",false);
 		  }else if (comment == "" || comment.length() >= 50 || 
 				  limitday == "") {
-			  System.out.print("1");
+			  System.out.println("1");
 			  log.info("INSERT ERROR");
 			  mav.addObject("isresult",false);
-		  }else if(limitday != JUDGE_DATE) {
-			  System.out.print("2");
+		  }else if(p.matcher(limitday).find()) {
+			  System.out.println("2");
 			  mav.addObject("isresult",false);
 			  log.info("Tampering!!");
 		  }else {
