@@ -69,7 +69,7 @@ public class GourmetService {
 			}
 			else {
 				//resultsパラメータの抽出(配列分取得する)
-				for(JsonNode shop:node.get("shop")) {
+				for(JsonNode shop:node.get("results").get("shop")) {
 					
 					//データクラスの生成(results1件分)
 					ShopData shopData=new ShopData();
@@ -81,8 +81,8 @@ public class GourmetService {
 					shopData.setName_kana(shop.get("name_kana").asText());
 					shopData.setAddress(shop.get("address").asText());
 					shopData.setAccess(shop.get("access").asText());
-					shopData.setUrl(shop.get("urls").asText());
-					shopData.setImage(shop.get("sp").asText());
+					shopData.setUrl(shop.get("urls").get("pc").asText());
+					shopData.setImage(shop.get("photo").get("mobile").get("l").asText());
 					 
 					
 					//可変長配列の末尾に追加
