@@ -25,7 +25,7 @@ public class GourmetController {
 	 */
 	
 	@PostMapping("/gourmet")
-	public String getGourmet(@RequestParam("keyword") String keyword,
+	public String getGourmet(@RequestParam("gourmet") String keyword,
 			Principal principal,Model model) {
 		String returns = null;
 		
