@@ -7,10 +7,10 @@ import lombok.Data;
 
 /**
  * 
- * 郵便番号情報検索結果の店舗情報
+ * 店舗検索結果の店舗情報
  * 各項目のデータ仕様については、APIの仕様を参照とする
- * １つの郵便番号に複数の住所が紐づく事もあるため、リスト構造となっている
- * - http://zipcloud.ibsnet.co.jp/doc/api
+ * 検索内容で複数の結果が紐づく事もあるため、リスト構造となっている
+ * - http://webservice.recruit.co.jp/hotpepper/gourmet/v1/
  *
  */
 @Data
