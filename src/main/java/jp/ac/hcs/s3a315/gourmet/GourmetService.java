@@ -1,4 +1,4 @@
-package gourmet;
+package jp.ac.hcs.s3a315.gourmet;
 
 import java.io.IOException;
 

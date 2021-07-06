@@ -1,4 +1,4 @@
-package gourmet;
+package jp.ac.hcs.s3a315.gourmet;
 
 import java.util.ArrayList;
 import java.util.List;
