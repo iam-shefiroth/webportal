@@ -53,7 +53,7 @@ public class GourmetService {
 			JsonNode node=mapper.readTree(json);
 			
 			
-			String shops = node.get("shop").asText();
+			String shops = node.get("results").get("shop").asText();
 			System.out.println(shops);
 			
 			

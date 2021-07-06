@@ -67,18 +67,18 @@
 	<!-- コンテンツ -->
 	<div class="container">
 		<div class="content-box">
-			<h1><span th:text="${weatherEntity.title}"></span></h1>
-			<h3>詳細</h3>
+			<h1><span ></span>北海道グルメ</h1>
+			<h3 style="display:inline">「</h3>
+			<h3 th:text="${keyword}"style="display:inline"></h3>
+			<h3 style="display:inline">」の検索結果</h3>
 			<!-- 基本一件だが、API構造に従い繰り返す構文とする -->
-			<ul th:each="forecast : ${weatherEntity.forecasts}" th:object="${forecast}">
-				<li><span th:text="*{dateLabel}"></span></li>
-				<li><span th:text="*{telop}"></span></li>
-				<li><span th:text="*{description}"></span></li>
-			</ul>
-			<ul th:each="description_one : ${weatherEntity.description}" th:object="${description_one}">
-				<li><span th:text="*{headlineText}"></span></li>
-				<li><span th:text="*{bodyText}"></span></li>
-				<li><span th:text="*{text}"></span></li>
+			<ul th:each="gourmet : ${shopEntity.shop}" th:object="${gourmet}">
+				<li><img class="shopimage" th:src="${gourmet.logo_image}"></li>
+				<li><a th:href="${gourmet.url}" target="new">
+				<span th:text="${gourmet.name}"></span></a></li>
+				<li><a th:href="${gourmet.url}" target="new">
+				<span th:text="${gourmet.address}"></span></a></li>
+				<li><span th:text="${gourmet.access}"></span></li>
 			</ul>
 		</div>
 	</div>
