@@ -81,6 +81,10 @@ public class GourmetService {
 					shopData.setAccess(shop.get("access").asText());
 					shopData.setUrl(shop.get("urls").get("pc").asText());
 					shopData.setImage(shop.get("photo").get("mobile").get("l").asText());
+					
+					String google = "https://www.google.com/maps/search/?api=1&query="
+					+ shop.get("address").asText();
+					shopData.setSearch(google);
 					 
 					
 					//可変長配列の末尾に追加

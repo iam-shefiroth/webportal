@@ -30,4 +30,6 @@ public class ShopData {
 	/** 携帯用のイメージ画像*/
 	private String image;
 
+	/** Googlemap表示する*/
+	private String search;
 }
