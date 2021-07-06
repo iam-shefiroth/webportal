@@ -110,15 +110,18 @@ public class TaskController {
 		  if (comment == null || limitday == null) {
 			  log.info("ELEMENT ERROR");
 			  mav.addObject("isresult",false);
+			  
 		  }else if (comment == "" || comment.length() >= 50 || 
 				  limitday == "") {
 			  System.out.println("1");
 			  log.info("INSERT ERROR");
 			  mav.addObject("isresult",false);
-				/*
-				 * }else if(p.matcher(limitday).find()) { System.out.println("2");
-				 * mav.addObject("isresult",false); log.info("Tampering!!");
-				 */
+			  
+		  }else if(!(p.matcher(limitday).find())) { 
+			  System.out.println("2");
+			  mav.addObject("isresult",false);
+			  log.info("Tampering!!");
+			  
 		  }else {
 			  //タスク追加情報をTaskDataクラスを利用 
 		  System.out.println("3");

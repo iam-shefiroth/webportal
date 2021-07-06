@@ -21,7 +21,7 @@ function weather_check(){
 	if (weather.weather.value == ""){
 		alert("選択してください");
 		return false; 
-	}else if (weather.weather.value != judge){
+	}else if (!weather.weather.value.match(judge)){
 		alert("この不正パラメータは使用できません：" + weather.weather.value);
 		return false;
 	}else {
