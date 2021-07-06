@@ -55,12 +55,12 @@ public class GourmetService {
 			JsonNode node=mapper.readTree(json);
 			
 			
-			String results = node.get("results").asText();
-			System.out.println(results);
+			String shops = node.get("shop").asText();
+			System.out.println(shops);
 			
 			
 			//メッセージに何か入力されたらエラー処理を行う。
-			if (results == "null") {
+			if (shops == "null") {
 				ShopData shopData=new ShopData();
 			
 				shopData.setName("条件に該当する住所は見つかりませんでした。");
@@ -69,24 +69,24 @@ public class GourmetService {
 			}
 			else {
 				//resultsパラメータの抽出(配列分取得する)
-				for(JsonNode result:node.get("results")) {
+				for(JsonNode shop:node.get("shop")) {
 					
 					//データクラスの生成(results1件分)
-					ShopData zipCodeData=new ShopData();
+					ShopData shopData=new ShopData();
 					
-					/*
-					 * zipCodeData.setZipcode(result.get("zipcode").asText());
-					 * zipCodeData.setPrefcode(result.get("prefcode").asText());
-					 * zipCodeData.setAddress1(result.get("address1").asText());
-					 * zipCodeData.setAddress2(result.get("address2").asText());
-					 * zipCodeData.setAddress3(result.get("address3").asText());
-					 * zipCodeData.setKana1(result.get("kana1").asText());
-					 * zipCodeData.setKana2(result.get("kana2").asText());
-					 * zipCodeData.setKana3(result.get("kana3").asText());
-					 */
+					
+					shopData.setId(shop.get("id").asText());
+					shopData.setName(shop.get("name").asText());
+					shopData.setLogo_image(shop.get("logo_image").asText());
+					shopData.setName_kana(shop.get("name_kana").asText());
+					shopData.setAddress(shop.get("address").asText());
+					shopData.setAccess(shop.get("access").asText());
+					shopData.setUrl(shop.get("urls").asText());
+					shopData.setImage(shop.get("sp").asText());
+					 
 					
 					//可変長配列の末尾に追加
-					shopEntity.getShop().add(zipCodeData);
+					shopEntity.getShop().add(shopData);
 				}
 			
 			

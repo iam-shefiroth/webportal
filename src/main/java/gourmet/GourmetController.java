@@ -27,7 +27,7 @@ public class GourmetController {
 	@PostMapping("/gourmet")
 	public String getGourmet(@RequestParam("gourmet") String keyword,
 			Principal principal,Model model) {
-		String returns = null;
+		String returns = "gourmet/gouemet";
 		
 		//北海道に固定（後に変更あり？）
 		String large_service_area = "SS40";
@@ -35,7 +35,10 @@ public class GourmetController {
 		//キーワードを元にAPIで検索する。
 		log.info(principal.getName() + "inputwords :" + keyword + 
 				" and choise Large_area" + large_service_area);
-		ShopEntity shopentity = gourmetService.findGourmet(keyword,large_service_area);
+		ShopEntity shopEntity = gourmetService.findGourmet(keyword,large_service_area);
+		
+		model.addAttribute("shopEntity",shopEntity);
+		model.addAttribute("keyword",keyword);
 		
 		return returns;
 	}
