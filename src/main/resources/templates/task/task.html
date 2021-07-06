@@ -70,11 +70,9 @@
 	
 	<hr>
 	
-	<!-- <div class="alert alert-success" th:if="${isresult}" role="alert">正常に処理しました。
-	</div>
-	<div class="alert alert-danger" th:unless="${isresult}" role="alert">致命的なエラーが発生しました。
-	</div>
- -->	<div th:if="${result == null}"></div>
+	<div class="alert alert-success" th:if="${isSucsess}" th:text="${message}"role="alert"></div>
+	<div class="alert alert-danger" th:if="${isError}"th:text="${message}" role="alert"></div>
+	<div th:if="${result == null}"></div>
 	<form method="post" th:action="@{/task/insert}">
 		<div class="input-group">
 			<input type="text" class="form-control" name="comment" placeholder="タスク内容">

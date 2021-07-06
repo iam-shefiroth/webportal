@@ -39,14 +39,19 @@ public class TaskController {
 	public static final String JUDGE_DATE = 
 			"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
 	
+	  //実行結果アラートタグの設定
+	public static final String ALERT = null;
+	  
+	  //実行結果のメッセージの設定
+	public static final String MESSAGE = null;
+	
 	@PostMapping("/task")
-	public String getTask(Principal principal,Model model,ModelAndView mav) {
+	public String getTask(Principal principal,Model model) {
 		String returns = null;
+		System.out.println("1");
 		TaskEntity taskEntity = taskService.getTask(principal.getName());
 		model.addAttribute("taskEntity",taskEntity);
 		
-		mav.setViewName("task");
-		mav.addObject("isresult",false);
 		
 		returns = "task/task";
 		return returns;
@@ -82,6 +87,7 @@ public class TaskController {
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", WebConfig.FILENAME_TASK_CSV);
+		
 
 		// CSVファイルを端末へ送信
 		return new ResponseEntity<byte[]>(bytes, header, HttpStatus.OK);
@@ -104,27 +110,32 @@ public class TaskController {
 	  public String insertTask(@RequestParam(name = "comment",required = false) String comment,
 			  @RequestParam(name = "limitday",required = false) String limitday
 			  ,Principal principal,Model model,ModelAndView mav){
-		  System.out.println(limitday);
+		  System.out.println("2");
+		  
+		  //実行結果アラートタグの設定
+		  String alert = null;
+			  
+			  //実行結果のメッセージの設定
+		  String message = null;
+		  
+		  //正規表現のコンパイル
 		  Pattern p = Pattern.compile(JUDGE_DATE);
 	  //タスク内容と期限日のチェックを行う。
 		  if (comment == null || limitday == null) {
 			  log.info("ELEMENT ERROR");
-			  mav.addObject("isresult",false);
-			  
+			  alert = "isError";
+			  message = "致命的なエラーが発生しました。";
 		  }else if (comment == "" || comment.length() >= 50 || 
 				  limitday == "") {
-			  System.out.println("1");
 			  log.info("INSERT ERROR");
-			  mav.addObject("isresult",false);
-			  
+			  message = "入力内容が空白又はタスク内容が５０文字以上です。";
+			  alert = "isError";
 		  }else if(!(p.matcher(limitday).find())) { 
-			  System.out.println("2");
-			  mav.addObject("isresult",false);
 			  log.info("Tampering!!");
-			  
+			  alert = "isError";
+			  message = "致命的なエラーが発生しました。";
 		  }else {
 			  //タスク追加情報をTaskDataクラスを利用 
-		  System.out.println("3");
 		  TaskData data = new TaskData();
 		  
 		  
@@ -136,16 +147,20 @@ public class TaskController {
 		  
 		  log.info("「" + principal.getName() + "」insert comment:" + comment +
 		  " limitday:" + data.getLimitday()); 
-		  boolean isSuccess = taskService.setTask(data); 
-		  if (isSuccess){
+		  boolean isJudge = taskService.setTask(data); 
+		  if (isJudge){
 			  log.info("You are SUCSESS");
-			  mav.addObject("isresult",true);
+			  alert = "isSucsess";
+			  message = "正常に追加されました。";
 		  }else {
 			  log.info("You are FAILED");
-			  mav.addObject("isresult",false);
+			  alert = "isError";
+			  message = "異常発生が起きたため、追加に失敗しました。";
 		  }
 	  }
-	  return getTask(principal,model,mav);
+		  model.addAttribute(alert,true);
+		  model.addAttribute("message",message);
+		  return getTask(principal,model);
 	  
 	  }
 	  
@@ -161,22 +176,25 @@ public class TaskController {
 	  
 	  @RequestMapping("/task/delete/{task.id}")
 		public String deleteTask(@PathVariable("task.id") int id,
-				Principal principal,Model model,ModelAndView mav){
+				Principal principal,Model model){
 			
-			System.out.println("御陀仏");
-			
-			/*チェック（あとでやる）
-			 * if (comment == null || comment.length() >= 50 || limitday == null ) {
-			 * 
-			 * }
-			 */
-			
-			
-			taskService.deleteTask(id);
-			
-			 
-			return getTask(principal,model,mav);
-		}
-	 
-
+		  //実行結果アラートタグの設定
+		  String alert = null;
+			  
+			  //実行結果のメッセージの設定
+		  String message = null;
+		  boolean isJudge = taskService.deleteTask(id);
+		  if (isJudge){
+			  log.info("You are SUCSESS");
+			  alert = "isSucsess";
+			  message = "正常に削除されました。";
+		  }else {
+			  log.info("You are FAILED");
+			  alert = "isError";
+			  message = "異常発生が起きたため、削除に失敗しました。";
+			  }
+		  model.addAttribute(alert,true);
+		  model.addAttribute("message",message);
+		  return getTask(principal,model);
+	  }
 }

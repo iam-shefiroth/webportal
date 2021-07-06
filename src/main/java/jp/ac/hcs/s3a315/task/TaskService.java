@@ -55,6 +55,7 @@ public class TaskService {
 			
 		}catch (DataAccessException e){
 			e.printStackTrace();
+			return false;
 		}
 		
 		return true;
@@ -87,14 +88,17 @@ public class TaskService {
 	 * @param num sqlのID番号
 	 */
 	
-	public void deleteTask(int num) {
+	public boolean deleteTask(int num) {
 		
 		try {
 			taskRepository.deleteOne(num);
 			
 		}catch (DataAccessException e){
 			e.printStackTrace();
+			return false;
 		}
+		
+		return true;
 		
 	}
 	

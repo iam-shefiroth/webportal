@@ -18,4 +18,6 @@ public class TaskEntity {
 	 * タスク情報のリスト
 	 */
 	private List<TaskData> tasklist = new ArrayList<TaskData>();
+	
+
 }
