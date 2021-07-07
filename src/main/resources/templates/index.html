@@ -88,6 +88,7 @@
 				<div class="content-box">
 					<h2>天気予報</h2>
 					<form method="post" th:action="@{/weather}" name="weather">
+					<div class="input-group">
 						<select name="weather"class="form-control">
 						<option value="" selected>選んでください</option>
 						<option value="011000" id="11000">稚内</option>
@@ -109,6 +110,7 @@
 						</select>
 								<button type="submit" class="btn btn-info"onclick="return weather_check()" >
 								詳細</button>
+							</div>
 					</form>
 				</div>
 			</div>
@@ -151,8 +153,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6" role="presentation" sec:authorize="hasRole(ADMIN)">
-				<!-- 管理者蚤のコンテンツ -->
+			<div class="col-sm-6" role="presentation" sec:authorize="hasRole('ADMIN')">
 				<div class="content-box">
 					<h2>ユーザ管理</h2>
 					<form method="get" th:action="@{/user/list}">
@@ -160,7 +161,6 @@
 					</form>
 				</div>
 			</div>
-		
 		</div>
 	</div>
 	
