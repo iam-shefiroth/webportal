@@ -30,7 +30,7 @@ public class UserForm {
 	/** ユーザ名*/
 	@NotBlank(message = "{require_check}")
 	private String user_name;
-	/** ダークモードフラグ*/
+	/** ダークモードフラグ　妥当性が分からない（false_checkを利用する。）*/
 	@NotBlank(message = "{require_check}")
 	private boolean darkmode;
 	
