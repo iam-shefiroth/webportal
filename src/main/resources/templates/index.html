@@ -149,6 +149,21 @@
 		
 	</div>
 	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6" role="presentation" sec:authorize="hasRole(ADMIN)">
+				<!-- 管理者蚤のコンテンツ -->
+				<div class="content-box">
+					<h2>ユーザ管理</h2>
+					<form method="get" th:action="@{/user/list}">
+						<button type="submit" class="btn btn-sucess">ユーザ管理へ</button>
+					</form>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+	
 
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
