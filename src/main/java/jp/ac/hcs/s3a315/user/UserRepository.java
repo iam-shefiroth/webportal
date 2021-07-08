@@ -78,6 +78,7 @@ public class UserRepository {
 	 */
 	private UserEntity mappingSelectResult(List<Map<String, Object>> resultList) {
 		UserEntity entity = new UserEntity();
+		System.out.println(resultList);
 
 		for (Map<String, Object> map : resultList) {
 			UserData data = new UserData();
