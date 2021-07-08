@@ -98,7 +98,7 @@
 								<span th:text ="${user.role}"></span>
 							</td>
 							<td>
-								<a class="btn btn-success" th:href="@{'/user/detail' + *{user_id}}">詳細</a>
+								<a class="btn btn-success" th:href="@{'/user/detail/' + *{user.user_id}}">詳細</a>
 							</td>
 						</tr>
 					</tbody>

@@ -92,10 +92,11 @@ public class UserController {
 	 * @return ユーザ詳細情報画面
 	 */
 	
-	@GetMapping("/user/detaol/{id}")
-	public String getUserData(@PathVariable("id") String user_id,Principal principal,Model model) {
-		
-		
+	@GetMapping("/user/detail/{id}")
+	public String getUserData(@PathVariable ("id") String user_id,Principal principal,Model model) {
+		//後に必須チェックと妥当性チェックを書く。
+		UserData data = userService.getUserOne(user_id);
+		model.addAttribute("userData",data);
 		return "user/detail";
 	}
 	

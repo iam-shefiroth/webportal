@@ -71,5 +71,27 @@ public class UserService {
 		data.setEnabled(true);
 		return data;
 	}
+	
+	
+	/**
+	 * ユーザ情報を一件抽出する。
+	 * @param user_id ユーザID
+	 * @return userData 
+	 * 
+	 */
+	
+	public UserData getUserOne(String user_id) {
+		//ユーザーエンティティの作成
+		UserData userData;
+		try {
+			userData = userRepository.selectOne(user_id);
+			
+		}catch(DataAccessException e){
+			e.printStackTrace();
+			userData = null;
+		}
+		
+		return userData;
+	}
 
 }
