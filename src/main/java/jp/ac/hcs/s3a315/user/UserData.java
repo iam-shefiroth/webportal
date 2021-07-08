@@ -32,6 +32,8 @@ public class UserData {
 	 */
 	
 	private boolean enabled;
+	
+	
 	/**
 	 * ユーザ名
 	 * 必須入力
