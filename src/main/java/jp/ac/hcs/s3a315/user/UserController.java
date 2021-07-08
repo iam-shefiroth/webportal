@@ -32,6 +32,7 @@ public class UserController {
 	public String getUser(Model model) {
 		UserEntity userEntity = userService.getTask();
 		
+		System.out.println("reading");
 		model.addAttribute("userEntity",userEntity);
 		
 		return "user/userList";
@@ -60,12 +61,28 @@ public class UserController {
 	public String setUser(@ModelAttribute @Validated UserForm form,BindingResult bindingResult,
 			Principal principal,Model model) {
 		
+		//userform→userdataメソッドに置換する
+		UserData data = userService.chengeMethod(form);
+		
 		//入力チェックに引っかかった場合、前の画面に戻る
 		if (bindingResult.hasErrors()) {
 			return setUser(form,model);
+		}else {
+			boolean isJudge = userService.insertUser(data);
+			if (isJudge) {
+				log.info("UserAccount Registeird Sucsess");
+			}else {
+				log.info("UserAccount Registeird Failed");	
+			}
+			
+			System.out.println("isnerted");
+			return getUser(model);
+			
 		}
 		
-		return getUser(model);
+		
 	}
+	
+	
 
 }
