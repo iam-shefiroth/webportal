@@ -155,11 +155,11 @@
 		<div class="row">
 			<div class="col-sm-6" role="presentation" sec:authorize="hasRole('ADMIN')">
 				<div class="content-box">
-					<h2>ユーザ管理</h2>
-
-				</div>					<form method="get" th:action="@{/user/list}">
-						<button type="submit" class="btn btn-sucess">ユーザ管理へ</button>
-					</form>
+					<h2>ユーザ管理</h2>					
+				<form method="get" th:action="@{/user/list}">
+						<button type="submit" class="btn btn-info">ユーザ管理へ</button>
+				</form>
+				</div>
 			</div>
 		</div>
 	</div>
