@@ -93,5 +93,21 @@ public class UserService {
 		
 		return userData;
 	}
-
+	
+	/**
+	 * ユーザ情報を一件削除する
+	 * 
+	 * @return 処理結果（成功：true,失敗：false）
+	 */
+	
+	public boolean deleteUserOne(String user_id) {
+		int rowNumber;
+		try {
+			rowNumber = userRepository.deleteOne(user_id);
+		}catch (DataAccessException e) {
+			e.printStackTrace();
+			rowNumber = 0;
+		}
+		return rowNumber > 0;
+	}
 }

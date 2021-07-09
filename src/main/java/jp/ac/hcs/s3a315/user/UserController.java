@@ -1,6 +1,7 @@
 package jp.ac.hcs.s3a315.user;
 
 import java.security.Principal;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,11 +31,13 @@ public class UserController {
 	 * @return ユーザ一覧画面
 	 */
 	
+	//正規表現
+	static final String JUDGE = "^[a-zA-Z0-9]+$";
+	
 	@GetMapping("/user/list")
 	public String getUser(Model model) {
 		UserEntity userEntity = userService.getTask();
 		
-		System.out.println("reading");
 		model.addAttribute("userEntity",userEntity);
 		
 		return "user/userList";
@@ -94,18 +98,50 @@ public class UserController {
 	
 	@GetMapping("/user/detail/{id}")
 	public String getUserData(@PathVariable ("id") String user_id,Principal principal,Model model) {
-		//正規表現
+		
+		//正規表現処理
+		Pattern p = Pattern.compile(JUDGE);
+		String returns = null;
 		
 		//後に必須チェックと妥当性チェックを書く。
 		if (user_id == null) {
 			log.info("NO DATE!!");
-			return getUser(model);
-			/* }else if () { */
-			
+			returns =  getUser(model);
+		}else if ((p.matcher(user_id).find())) { 
+			log.info("Tampering to your user_id!!");
+			returns =  getUser(model);
+		}else {
+			UserData data = userService.getUserOne(user_id);
+			if (data == null) {
+				log.info("Your user_id is Invalid !!");
+				returns =  getUser(model);
+			}else {
+				model.addAttribute("userData",data);
+				returns = "user/detail";
+			}
 		}
-		UserData data = userService.getUserOne(user_id);
-		model.addAttribute("userData",data);
-		return "user/detail";
+		
+		return returns;
+	}
+	
+	/**
+	 * ユーザ情報を削除する
+	 * @param user_id ユーザID情報
+	 * @param model
+	 * @return ユーザ一覧画面 
+	 */
+	
+	@RequestMapping("/user/delete/{user_id}")
+	public String deleteUser(@PathVariable ("user_id") String user_id,Model model) {
+		System.out.println("go");
+		boolean isJudge = userService.deleteUserOne(user_id);
+		if (isJudge) {
+			log.info("UserAccount Deleted Sucsess");
+		}else {
+			log.info("UserAccount Deleted Failed");	
+		}
+		
+		return getUser(model);
 	}
 	
 
