@@ -94,11 +94,13 @@ public class UserController {
 	
 	@GetMapping("/user/detail/{id}")
 	public String getUserData(@PathVariable ("id") String user_id,Principal principal,Model model) {
+		//正規表現
+		
 		//後に必須チェックと妥当性チェックを書く。
 		if (user_id == null) {
 			log.info("NO DATE!!");
 			return getUser(model);
-			/* }else if () { */
+			 }else if () { 
 			
 		}
 		UserData data = userService.getUserOne(user_id);
