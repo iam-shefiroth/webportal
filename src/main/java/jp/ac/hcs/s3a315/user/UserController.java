@@ -100,7 +100,7 @@ public class UserController {
 		if (user_id == null) {
 			log.info("NO DATE!!");
 			return getUser(model);
-			 }else if () { 
+			/* }else if () { */
 			
 		}
 		UserData data = userService.getUserOne(user_id);
