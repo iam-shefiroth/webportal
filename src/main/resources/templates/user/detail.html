@@ -112,7 +112,7 @@
 					<button class="btn btn-primary" type="submit" name="update">更新</button>
 				</form>
 					<hr>
-				<form method="post" th:action="@{/user/delete}" th:object="${userData}">
+				<form method="post" th:action="@{'/user/delete/' + *{user_id}}" th:object="${userData}">
 					<input type="hidden" th:value="*{user_id}">
 					<button class="btn btn-danger" type="submit" name="delete">削除</button>
 				</form>
