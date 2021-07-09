@@ -48,7 +48,6 @@ public class TaskController {
 	@PostMapping("/task")
 	public String getTask(Principal principal,Model model) {
 		String returns = null;
-		System.out.println("1");
 		TaskEntity taskEntity = taskService.getTask(principal.getName());
 		model.addAttribute("taskEntity",taskEntity);
 		
@@ -108,7 +107,9 @@ public class TaskController {
 	  
 	  @PostMapping("/task/insert") 
 	  public String insertTask(@RequestParam(name = "comment",required = false) String comment,
-			  @RequestParam(name = "limitday",required = false) String limitday
+			  @RequestParam(name = "limitday",required = false) String limitday,
+			  @RequestParam(name = "title",required = false) String title,
+			  @RequestParam(name = "priority",required = false) String priority 
 			  ,Principal principal,Model model,ModelAndView mav){
 		  System.out.println("2");
 		  
@@ -135,15 +136,12 @@ public class TaskController {
 			  alert = "isError";
 			  message = "致命的なエラーが発生しました。";
 		  }else {
-			  //タスク追加情報をTaskDataクラスを利用 
-		  TaskData data = new TaskData();
-		  
-		  
+
 		  //期限日をDate型に変換する 
 		  Date sqlDate= Date.valueOf(limitday);
 		  
-		  data.setComment(comment); data.setLimitday(sqlDate);
-		  data.setUser_id(principal.getName());
+		  //タスク追加情報をTaskDataクラスを利用 
+		  TaskData data = taskService.createTaskData(title,sqlDate,comment,priority);
 		  
 		  log.info("「" + principal.getName() + "」insert comment:" + comment +
 		  " limitday:" + data.getLimitday()); 

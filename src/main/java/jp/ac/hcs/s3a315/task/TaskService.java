@@ -5,6 +5,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -102,5 +103,26 @@ public class TaskService {
 		
 	}
 	
+	/**
+	 * タスク情報をtaskDataに挿入する
+	 *@param title
+	 *@param limitday
+	 *@param comment
+	 *@param priority
+	 *
+	 *@return taskData
+	 */
+	TaskData createTaskData(String title,Date limitday,String comment,String prioryty) {
+		TaskData taskData = new TaskData();
+		
+		//タスクデータを設定する
+		taskData.setTitle(title);
+		taskData.setLimitday(limitday);
+		taskData.setComment(comment);
+		
+		int priority = Integer.parseInt(prioryty);
+		taskData.setPriority(Priority.IdOf(priority));
+		return taskData;
+	}
 
 }

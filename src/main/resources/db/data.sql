@@ -18,8 +18,8 @@ VALUES('mario@xxx.co.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qj
 
 
 /* タスクテーブルのデータ */
-INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (1, 'isida@xxx.co.jp', 'HIGH','a', 'これやる', '2020-03-23');
-INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (2, 'abe@xxx.co.jp', 'MIDDLE','b', 'あれやる', '2020-03-24');
-INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (3, 'isida@xxx.co.jp', 'LOW','c', 'それやる', '2020-03-31');
-INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (4, 'sano@xxx.co.jp', 'LOW','d', 'どれやる', '2020-03-25');
-INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (5, 'abe@xxx.co.jp', 'LOW','e', 'もっとやる', '2020-04-20');
+INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (1, 'isida@xxx.co.jp', 1,'a', 'これやる', '2020-03-23');
+INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (2, 'abe@xxx.co.jp', 2,'c', 'それやる', '2020-03-31');
+INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (4, 'sano@xxx.co.jp', 3,'b', 'あれやる', '2020-03-24');
+INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (3, 'isida@xxx.co.jp', 3,'d', 'どれやる', '2020-03-25');
+INSERT INTO task (id, user_id, priority, title, comment, limitday) VALUES (5, 'abe@xxx.co.jp', 3,'e', 'もっとやる', '2020-04-20');

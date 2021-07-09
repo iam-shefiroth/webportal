@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS m_user (
 CREATE TABLE IF NOT EXISTS task (
   id INT PRIMARY KEY,
   user_id VARCHAR(50),
-  priority VARCHAR(10),
+  priority INT,
   title VARCHAR(50),
   comment VARCHAR(200),
   limitday DATE

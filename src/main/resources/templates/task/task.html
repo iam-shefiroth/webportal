@@ -75,11 +75,19 @@
 	<div th:if="${result == null}"></div>
 	<form method="post" th:action="@{/task/insert}">
 		<div class="input-group">
-			<input type="text" class="form-control" name="comment" placeholder="タスク内容">
+			<input type="text" class="form-control" name="title" placeholder="タイトル">
 			<input type="date" class="form-control" name="limitday">
+			<select name="priority" style="vertical-align: middle;">
+				<option value="1" id="1" selected>大</option>
+				<option value="2" id="2">中</option>
+				<option value="3" id="3">小</option>
+			</select>
 			<span class="input-group-btn">
 				<button type="submit" class="btn btn-warning">追加</button>
 			</span>
+		</div>
+		<div class="input-group">
+			<input type="text" class="form-control" name="comment" placeholder="タスク内容">
 		</div>
 	</form>
 	
@@ -96,7 +104,13 @@
 			<tr>
 				<td>
 					<a th:href="@{'/task/delete/' + ${task.id}}" onclick="return delete_verification()">
-					<span th:text="${task.comment}"></span></a>
+					<span th:text="${task.title}"></span></a>
+				</td>
+				<td>
+					<span th:text ="${task.priority.getValue()}"></span>
+				</td>
+				<td>
+					<span th:text ="${task.comment}"></span>
 				</td>
 				<td>
 					<span th:text ="${task.limitday}"></span>

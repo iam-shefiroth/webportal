@@ -22,8 +22,8 @@ public class TaskRepository {
 	
 	/*SQL一件追加*/
 	private static final String SQL_INSERT_ONE =
-			"INSERT INTO task(id,user_id,comment,limitday) "
-			+ "VALUES((SELECT MAX(id) + 1 FROM task),?,?,?)";
+			"INSERT INTO task(id,user_id,priority,title,comment,limitday) "
+			+ "VALUES((SELECT MAX(id) + 1 FROM task),?,?,?,?,?)";
 	
 	/*SQL全件取得 （期限日昇順）*/
 	private static final String SQL_DELETE_ONE =
@@ -61,6 +61,11 @@ public class TaskRepository {
 			data.setUser_id((String)map.get("user_id"));
 			data.setComment((String)map.get("comment"));
 			data.setLimitday((Date)map.get("limitday"));
+			data.setTitle((String)map.get("title"));
+			
+			//priorityの設定
+			int a= ((Integer)map.get("priority"));
+			data.setPriority(Priority.IdOf(a));
 			
 			entity.getTasklist().add(data);
 			
@@ -77,6 +82,7 @@ public class TaskRepository {
 	
 	public int insertOne(TaskData data)throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,data.getUser_id()
+				,data.getPriority(),data.getTitle()
 				,data.getComment(),data.getLimitday());
 		return rowNumber;
 		
