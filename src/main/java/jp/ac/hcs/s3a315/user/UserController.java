@@ -36,7 +36,9 @@ public class UserController {
 	
 	@GetMapping("/user/list")
 	public String getUser(Model model) {
+		//userの情報取得
 		UserEntity userEntity = userService.getTask();
+		
 		
 		model.addAttribute("userEntity",userEntity);
 		

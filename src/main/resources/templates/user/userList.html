@@ -86,16 +86,18 @@
 								<span th:text="${user.user_id}"></span>
 							</td>
 							<td>
-								<span th:text ="${user.enabled}"></span>
+								<span  th:if ="${user.enabled}">有効</span>
+								<span  th:unless ="${user.enabled}">無効</span>
 							</td>
 							<td>
 								<span th:text ="${user.user_name}"></span>
 							</td>
 							<td>
-								<span th:text ="${user.darkmode}"></span>
+								<span  th:if ="${user.darkmode}">DarkMode</span>
+								<span  th:unless ="${user.darkmode}">-</span>
 							</td>
 							<td>
-								<span th:text ="${user.role}"></span>
+								<span th:text ="${user.role.getValue()}"></span>
 							</td>
 							<td>
 								<a class="btn btn-success" th:href="@{'/user/detail/' + *{user.user_id}}">詳細</a>

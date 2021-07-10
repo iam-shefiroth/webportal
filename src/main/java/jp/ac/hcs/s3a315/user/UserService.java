@@ -66,7 +66,11 @@ public class UserService {
 		data.setPassword(form.getPassword());
 		data.setUser_name(form.getUser_name());
 		data.setDarkmode(form.isDarkmode());
-		data.setRole(form.getRole());
+		
+		//ロールの設定
+		String role = form.getRole();
+		data.setRole(Role.getRole(role));
+		
 		//初期値は有効設定
 		data.setEnabled(true);
 		return data;

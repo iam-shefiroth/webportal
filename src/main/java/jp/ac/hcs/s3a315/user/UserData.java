@@ -58,6 +58,48 @@ public class UserData {
 	 * 必須入力
 	 */
 	
-	private String role;
+	private Role role;
 
+}
+
+/**
+ * 権限のEnumクラス
+ */
+enum Role{
+	ADMIN("ROLE_ADMIN","管理者"),
+	GENERAL("ROLE_GENERAL","一般");
+	/** 権限id*/
+	private String id;
+	
+	/** 値*/
+	private String value;
+	
+	/** コンストラクタ*/
+	Role(String id,String value){
+		this.id = id;
+		this.value = value;
+	}
+	
+	public String getValue() {
+		return this.value;
+	}
+	
+	public String getId() {
+		return this.id;
+	}
+	
+	/**
+	 * IDから合致したPriority型を返却する
+	 * @param id
+	 * @return Role
+	 */
+	
+	public static Role getRole(String id) {
+		for (Role role : values()) {
+			if(role.getId().equals(id)) {
+				return role;
+			}
+		}
+		throw new IllegalArgumentException("指定されたIDのRoleが存在しません");
+	}
 }
