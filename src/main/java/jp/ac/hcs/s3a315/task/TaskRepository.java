@@ -42,7 +42,6 @@ public class TaskRepository {
 	
 	public TaskEntity selectAll(String user_id) throws DataAccessException {
 		List<Map<String,Object>> resultList = jdbc.queryForList(SQL_SELECT_ALL,user_id);
-		System.out.println(resultList);
 		TaskEntity taskEntity = mappingSelectResult(resultList);
 		return taskEntity;
 	}
