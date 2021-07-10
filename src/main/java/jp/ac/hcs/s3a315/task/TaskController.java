@@ -111,7 +111,6 @@ public class TaskController {
 			  @RequestParam(name = "title",required = false) String title,
 			  @RequestParam(name = "priority",required = false) String priority 
 			  ,Principal principal,Model model,ModelAndView mav){
-		  System.out.println("2");
 		  
 		  //実行結果アラートタグの設定
 		  String alert = null;

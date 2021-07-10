@@ -42,6 +42,7 @@ public class TaskRepository {
 	
 	public TaskEntity selectAll(String user_id) throws DataAccessException {
 		List<Map<String,Object>> resultList = jdbc.queryForList(SQL_SELECT_ALL,user_id);
+		System.out.println(resultList);
 		TaskEntity taskEntity = mappingSelectResult(resultList);
 		return taskEntity;
 	}
@@ -82,7 +83,7 @@ public class TaskRepository {
 	
 	public int insertOne(TaskData data)throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,data.getUser_id()
-				,data.getPriority(),data.getTitle()
+				,data.getPriority().getId(),data.getTitle()
 				,data.getComment(),data.getLimitday());
 		return rowNumber;
 		
