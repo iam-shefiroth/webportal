@@ -140,7 +140,7 @@ public class TaskController {
 		  Date sqlDate= Date.valueOf(limitday);
 		  
 		  //タスク追加情報をTaskDataクラスを利用 
-		  TaskData data = taskService.createTaskData(title,sqlDate,comment,priority);
+		  TaskData data = taskService.createTaskData(principal.getName(),title,sqlDate,comment,priority);
 		  
 		  log.info("「" + principal.getName() + "」insert comment:" + comment +
 		  " limitday:" + data.getLimitday()); 

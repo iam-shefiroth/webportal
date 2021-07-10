@@ -50,16 +50,15 @@ public class TaskService {
 	 */
 
 	public boolean setTask(TaskData data) {
-		
+		int result;
 		try {
-			taskRepository.insertOne(data);
-			
+			result = taskRepository.insertOne(data);
 		}catch (DataAccessException e){
 			e.printStackTrace();
-			return false;
+			result = 0;
 		}
 		
-		return true;
+		return result > 0;
 	}
 	
 	/**
@@ -112,10 +111,11 @@ public class TaskService {
 	 *
 	 *@return taskData
 	 */
-	TaskData createTaskData(String title,Date limitday,String comment,String prioryty) {
+	TaskData createTaskData(String user_id,String title,Date limitday,String comment,String prioryty) {
 		TaskData taskData = new TaskData();
 		
 		//タスクデータを設定する
+		taskData.setUser_id(user_id);
 		taskData.setTitle(title);
 		taskData.setLimitday(limitday);
 		taskData.setComment(comment);

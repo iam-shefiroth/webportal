@@ -86,7 +86,6 @@ enum Priority{
 	
 	public static Priority IdOf(int id) {
 		for (Priority priority : values()) {
-			System.out.println(priority);
 			if(priority.getId() == id) {
 				return priority;
 			}
