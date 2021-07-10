@@ -64,7 +64,7 @@ public class TaskRepository {
 			data.setTitle((String)map.get("title"));
 			
 			//priorityの設定
-			int a= ((Integer)map.get("priority"));
+			String a= ((String)map.get("priority"));
 			data.setPriority(Priority.IdOf(a));
 			
 			entity.getTasklist().add(data);

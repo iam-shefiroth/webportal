@@ -55,17 +55,17 @@ public class TaskData {
  * 優先度のEnumクラス
  */
 enum Priority{
-	HIGH(1,"大"),
-	MIDDLE(2,"中"),
-	LOW(3,"小");
+	HIGH("HIGH","大"),
+	MIDDLE("MIDDLE","中"),
+	LOW("LOW","小");
 	/** ID*/
-	private int id;
+	private String id;
 	
 	/** 値*/
 	private String value;
 	
 	/** コンストラクタ*/
-	Priority(int id,String value){
+	Priority(String id,String value){
 		this.id = id;
 		this.value = value;
 	}
@@ -74,7 +74,7 @@ enum Priority{
 		return this.value;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 	
@@ -84,9 +84,9 @@ enum Priority{
 	 * @return Priority
 	 */
 	
-	public static Priority IdOf(int id) {
+	public static Priority IdOf(String id) {
 		for (Priority priority : values()) {
-			if(priority.getId() == id) {
+			if(priority.getId().equals(id)) {
 				return priority;
 			}
 		}

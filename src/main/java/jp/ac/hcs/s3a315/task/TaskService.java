@@ -120,8 +120,7 @@ public class TaskService {
 		taskData.setLimitday(limitday);
 		taskData.setComment(comment);
 		
-		int priority = Integer.parseInt(prioryty);
-		taskData.setPriority(Priority.IdOf(priority));
+		taskData.setPriority(Priority.IdOf(prioryty));
 		return taskData;
 	}
 
