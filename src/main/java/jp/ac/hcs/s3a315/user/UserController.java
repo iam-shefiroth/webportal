@@ -52,7 +52,7 @@ public class UserController {
 	 * @return ユーザ登録画面
 	 */
 	@GetMapping("/user/insert")
-	public String setUser(UserForm form,Model model) {
+	public String setUserInsert(UserForm form,Model model) {
 		return "user/insert";
 	}
 	
@@ -73,7 +73,7 @@ public class UserController {
 		
 		//入力チェックに引っかかった場合、前の画面に戻る
 		if (bindingResult.hasErrors()) {
-			return setUser(form,model);
+			return setUserInsert(form,model);
 		}else {
 			boolean isJudge = userService.insertUser(data);
 			if (isJudge) {
@@ -134,7 +134,7 @@ public class UserController {
 	 */
 	
 	@RequestMapping("/user/delete/{user_id}")
-	public String deleteUser(@PathVariable ("user_id") String user_id,Model model) {
+	public String setDeleteUser(@PathVariable ("user_id") String user_id,Model model) {
 		System.out.println("go");
 		boolean isJudge = userService.deleteUserOne(user_id);
 		if (isJudge) {
@@ -144,6 +144,27 @@ public class UserController {
 		}
 		
 		return getUser(model);
+	}
+	
+	/**
+	 * 一件のユーザアカウント情報を更新する
+	 * @param updateForm 更新するユーザ情報（パスワードは平文）
+	 * @param bindingResult データバインド実施結果
+	 * @param principal ログイン情報
+	 * @model model
+	 * @return ユーザ一覧画面
+	 */
+	
+	public String setUpsateUser(@ModelAttribute @Validated UaerFormForUpdate updateForm,
+			BindingResult bindingResult,Principal principal,Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return getUserData(updateForm.getUser_id(),principal,model);
+		}else {
+		return null;
+		}
+		
+		
 	}
 	
 

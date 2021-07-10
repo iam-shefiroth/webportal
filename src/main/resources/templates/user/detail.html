@@ -109,8 +109,24 @@
 						<span class="text-danger" th:if="${#fields.hasErrors('role')}"
 							th:errors="*{role}">role error</span>
 					</div>
+					
+					<label for="darkmode">ダークモード</label>
+					<div class="form-group input-box">
+						<div>
+							<input type="radio" name="darkmode" th:field="*{darkmode}" value="false" id="isRightmode">
+							ライトモード
+						</div>
+						<div>
+							<input type="radio" name="darkmode" th:field="*{darkmode}" value="true" id="isDarkmode">
+							ダークモード
+						</div>
+						<span class="text-danger" th:if="${#fields.hasErrors('darkmode')}"
+							th:errors="*{darkmode}">darkmode error</span>
+					</div>
+					
 					<button class="btn btn-primary" type="submit" name="update">更新</button>
 				</form>
+
 					<hr>
 				<form method="post" th:action="@{'/user/delete/' + *{user_id}}" th:object="${userData}">
 					<input type="hidden" th:value="*{user_id}">
