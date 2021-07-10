@@ -109,7 +109,7 @@ public class UserRepository {
 				passwordEncoder.encode(data.getPassword()),
 				data.getUser_name(),
 				data.isDarkmode(),
-				data.getRole(),data.isEnabled());
+				data.getRole().getId(),data.isEnabled());
 		return rowNumber;
 	}
 
