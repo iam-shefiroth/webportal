@@ -68,13 +68,16 @@ public class UserController {
 	public String setUser(@ModelAttribute @Validated UserForm form,BindingResult bindingResult,
 			Principal principal,Model model) {
 		
-		//userform→userdataメソッドに置換する
-		UserData data = userService.chengeMethod(form);
+
 		
 		//入力チェックに引っかかった場合、前の画面に戻る
 		if (bindingResult.hasErrors()) {
 			return setUserInsert(form,model);
 		}else {
+			
+			//userform→userdataメソッドに置換する
+			UserData data = userService.chengeMethod(form);
+			
 			boolean isJudge = userService.insertUser(data);
 			if (isJudge) {
 				log.info("UserAccount Registeird Sucsess");
