@@ -119,7 +119,7 @@ public class TaskController {
 		  //正規表現のコンパイル
 		  Pattern p = Pattern.compile(JUDGE_DATE);
 	  //タスク内容と期限日のチェックを行う。
-		  if (comment == null || limitday == null) {
+		  if (comment == null || limitday == null || title == null) {
 			  log.info("ELEMENT ERROR");
 			  alert = "isError";
 			  message = "致命的なエラーが発生しました。";
