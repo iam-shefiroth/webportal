@@ -31,18 +31,14 @@ public class WeatherController{
 	public String getWeather(@RequestParam("weather") String weather,
 			Principal principal,Model model) {
 		String returns = null;
-		System.out.println(weather + "番号");
 		if (weather == "") {
-			System.out.println("1");
 			log.info("choise miss");
 			returns = "index";
 			//改ざんされてるかどうか確認
 		}else if(!(weather.matches(TAMPERING))) {
-			System.out.println("2");
 			log.info("Tampering!!");
 			returns = "index";
 		}else {
-			System.out.println("3");
 			WeatherEntity weatherEntity = weatherService.getWeather(weather);
 			model.addAttribute("weatherEntity",weatherEntity);
 			

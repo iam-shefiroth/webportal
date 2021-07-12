@@ -39,11 +39,7 @@ public class TaskController {
 	public static final String JUDGE_DATE = 
 			"^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
 	
-	  //実行結果アラートタグの設定
-	public static final String ALERT = null;
-	  
-	  //実行結果のメッセージの設定
-	public static final String MESSAGE = null;
+
 	
 	@PostMapping("/task")
 	public String getTask(Principal principal,Model model) {

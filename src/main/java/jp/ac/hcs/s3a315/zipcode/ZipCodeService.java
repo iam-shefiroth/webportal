@@ -34,7 +34,6 @@ public class ZipCodeService {
 			
 			//APIへアクセスして、結果を取得
 			String json=restTemplate.getForObject(URL, String.class,zipcode);
-			System.out.println(json);
 			
 			//エンティティクラスを生成
 			ZipCodeEntity zipCodeEntity = new ZipCodeEntity();
@@ -53,7 +52,6 @@ public class ZipCodeService {
 				zipCodeEntity.setMessage(message);
 				
 				String results = node.get("results").asText();
-				System.out.println(results);
 				
 				//メッセージに何か入力されたらエラー処理を行う。
 				if (results == "null") {

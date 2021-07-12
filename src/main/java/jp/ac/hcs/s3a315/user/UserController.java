@@ -82,7 +82,6 @@ public class UserController {
 				log.info("UserAccount Registeird Failed");	
 			}
 			
-			System.out.println("isnerted");
 			return getUser(model);
 			
 		}
@@ -135,7 +134,6 @@ public class UserController {
 	
 	@RequestMapping("/user/delete/{user_id}")
 	public String setDeleteUser(@PathVariable ("user_id") String user_id,Model model) {
-		System.out.println("go");
 		boolean isJudge = userService.deleteUserOne(user_id);
 		if (isJudge) {
 			log.info("UserAccount Deleted Sucsess");

@@ -37,7 +37,6 @@ public class WeatherService {
 		
 		//APIへアクセスして、結果を取得
 		String json=restTemplate.getForObject(URL, String.class,weather);
-		System.out.println(json);
 		
 		//エンティティクラスを生成
 		WeatherEntity weatherEntity = new WeatherEntity();

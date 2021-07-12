@@ -29,7 +29,7 @@ public class GourmetController {
 			Principal principal,Model model) {
 		String returns = "gourmet/gourmet";
 		
-		//北海道に固定（後に変更あり？）
+		//北海道のコード
 		String large_service_area = "SS40";
 		
 		//キーワードを元にAPIで検索する。
