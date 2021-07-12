@@ -47,6 +47,7 @@ public class TaskService {
 	
 	/**
 	 * @param data タスクデータ追加情報
+	 * @return sql処理結果（成功：true,失敗：false）
 	 */
 
 	public boolean setTask(TaskData data) {
@@ -86,19 +87,20 @@ public class TaskService {
 	/**
 	 * 受け渡ったIDからSQLを削除する。
 	 * @param num sqlのID番号
+	 * @return sql処理結果（成功：true,失敗：false）
 	 */
 	
 	public boolean deleteTask(int num) {
-		
+		int result;
 		try {
-			taskRepository.deleteOne(num);
+			result = taskRepository.deleteOne(num);
 			
 		}catch (DataAccessException e){
 			e.printStackTrace();
-			return false;
+			result = 0;
 		}
 		
-		return true;
+		return result > 0;
 		
 	}
 	

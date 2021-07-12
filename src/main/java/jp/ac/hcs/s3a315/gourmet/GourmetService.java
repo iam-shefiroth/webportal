@@ -31,7 +31,7 @@ public class GourmetService {
 	/**
 	 * 指定したキーワードに紐づく店舗情報を取得する。
 	 * @param keyword 検索
-	 * @param large_service_area 地域設定コード
+	 * @param large_service_area 北海道コード
 	 * 
 	 * @return shopEntity
 	 */

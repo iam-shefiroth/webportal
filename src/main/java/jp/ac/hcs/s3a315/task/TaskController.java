@@ -32,7 +32,7 @@ public class TaskController {
 	 * 
 	 * @param principal ログイン情報
 	 * @param model
-	 * @return 検索結果-タスク情報
+	 * @return 取得結果-タスク情報
 	 */
 	
 	// 挿入処理の期限日で不正取得かどうかをチェックする yyyy-MM-dd
@@ -95,6 +95,8 @@ public class TaskController {
 	   * タスクの追加
 	   * @param comment 入力したタスク内容
 	   * @param limitday 入力した期限日
+	   * @param title 入力したタスクのタイトル名
+	   * @param priority 設定した優先度
 	   * @param principal ログイン情報
 	   * @param model
 	   * 

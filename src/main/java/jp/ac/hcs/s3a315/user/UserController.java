@@ -62,7 +62,7 @@ public class UserController {
 	 * @param bindingResult データバインド実施結果
 	 * @param principal ログイン情報
 	 * @model model
-	 * @return ユーザ一覧画面
+	 * @return 成功＝ユーザ一覧画面|失敗＝ユーザ登録画面＋エラー内容
 	 */
 	@PostMapping("/user/insert")
 	public String setUser(@ModelAttribute @Validated UserForm form,BindingResult bindingResult,
@@ -94,7 +94,7 @@ public class UserController {
 	 * @param user_id 検索するユーザID
 	 * @param principal ログイン情報
 	 * @param model
-	 * @return ユーザ詳細情報画面
+	 * @return 成功＝ユーザ詳細画面|失敗＝ユーザ一覧画面
 	 */
 	
 	@GetMapping("/user/detail/{id}")
@@ -145,7 +145,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 一件のユーザアカウント情報を更新する
+	 * 一件のユーザアカウント情報を更新する(時間の都合上この機能は着手していません)
 	 * @param updateForm 更新するユーザ情報（パスワードは平文）
 	 * @param bindingResult データバインド実施結果
 	 * @param principal ログイン情報
