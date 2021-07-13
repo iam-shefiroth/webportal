@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>jp.ac.hcs.ks</groupId>
-	<artifactId>webportal-FW</artifactId>
+	<artifactId>jobManagement-ks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jobManagement-ks</name>
 	<description>Demo project for Spring Boot</description>
