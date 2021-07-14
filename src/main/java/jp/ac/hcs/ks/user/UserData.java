@@ -66,18 +66,21 @@ public class UserData {
  * 権限のEnumクラス
  */
 enum Role{
-	ADMIN("ROLE_ADMIN","管理者"),
-	GENERAL("ROLE_GENERAL","一般");
+	ADMIN("ROLE_ADMIN","管理者",1),
+	GENERAL("ROLE_GENERAL","一般",2);
 	/** 権限id*/
 	private String id;
 	
 	/** 値*/
 	private String value;
 	
+	private int number;
+	
 	/** コンストラクタ*/
-	Role(String id,String value){
+	Role(String id,String value,int number){
 		this.id = id;
 		this.value = value;
+		this.number = number;
 	}
 	
 	public String getValue() {
@@ -87,6 +90,11 @@ enum Role{
 	public String getId() {
 		return this.id;
 	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	
 	
 	/**
 	 * IDから合致したPriority型を返却する
