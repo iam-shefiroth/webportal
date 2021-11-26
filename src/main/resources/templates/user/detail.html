@@ -4,7 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
-<title>WebPortal Main</title>
+<title>就活Portal.com 就職活動申請（申請）詳細
+</title>
 
 <!-- モバイル設定 -->
 <meta id="viewport" name="viewport"
@@ -109,7 +110,7 @@
 						<span class="text-danger" th:if="${#fields.hasErrors('role')}"
 							th:errors="*{role}">role error</span>
 					</div>
-					
+
 					<label for="darkmode">ダークモード</label>
 					<div class="form-group input-box">
 						<div>
@@ -123,7 +124,7 @@
 						<span class="text-danger" th:if="${#fields.hasErrors('darkmode')}"
 							th:errors="*{darkmode}">darkmode error</span>
 					</div>
-					
+
 					<button class="btn btn-primary" type="submit" name="update">更新</button>
 				</form>
 
