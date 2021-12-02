@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>jp.ac.hcs.s3a315</groupId>
-	<artifactId>webportal-FW</artifactId>
+	<artifactId>Graaaasses</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>webportal-FW</name>
+	<name>Graaaasses</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
